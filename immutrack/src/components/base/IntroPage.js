@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const IntroPage = () => {
   return (
     <div>
-      <Link to="/user">Login</Link>
+      <Link to="/login">Login</Link>
     </div>
   );
 };
