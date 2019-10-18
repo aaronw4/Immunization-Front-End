@@ -1,31 +1,29 @@
 //import axios form 'axios';
+import { axiosWithAuth } from '../utils/axiosWithAuth';
+
 export const SET_CHILD_ACTION = 'SET_CHILD_ACTION';
 export const SET_IMMUNIZATION_ACTION = 'SET_IMMUNIZATION_ACTION';
 
-import { axiosWithAuth } from '../utils/axiosWithAuth';
 
-export const loginAction = (credentials, userType) => dispatch => {
+export const loginAction = (userType, credentials) => dispatch => {
     axiosWithAuth()
-        .post(`/auth/login${userType}`, credentials)
+        .post(`/auth/login/${userType}`, credentials)
         .then(res => {
-            console.log('LOGIN RES: ', res);
+            localStorage.setItem('token', res.data.token);
             axiosWithAuth()
-                .get(`/parent/${res.id}/children`)
+                .get(`/parent/${res.data.user.id}/children`)
                 .then(res => {
-                    console.log('GET CHILDREN REQ RES: ', res);
-                    //dispatch() Add child list to state
-                    res.forEach((child, index) => {
+                    dispatch({type: SET_CHILD_ACTION, payload: res.data});
+                    res.data.forEach((child, index) => {
                         axiosWithAuth()
                             .get(`/child/${child.id}/immunization`)
                             .then(res => {
-                                console.log('GET IMMUNIZATION REQ RES: ', res)
-                                //dispatch() Add immunization list to child in state
-                                //dispatch({type: SET_IMMUNIZATION_ACTION, action: {immuneObj: res.data, index: index}})
+                                dispatch({type: SET_IMMUNIZATION_ACTION, payload: {immuneObj: res.data, index: index}})
                             })
-                            .catch(err => console.log('ERROR: ', err.message));
+                            .catch(err => console.log('ERROR IMMUNE REQ: ', err.message));
                     })
                 })
-                .catch(err => console.log('ERROR: ', err.message));
+                .catch(err => console.log('ERROR CHILD REQ: ', err.message));
         })
-        .catch(err => console.log('ERROR: ', err.message));
+        .catch(err => console.log('ERROR LOGIN: ', err.message));
 }

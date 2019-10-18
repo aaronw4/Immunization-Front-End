@@ -1,4 +1,5 @@
 import { SET_IMMUNIZATION_ACTION } from '../actions';
+import { SET_CHILD_ACTION } from '../actions';
 
 const initialState = {
     childList: [

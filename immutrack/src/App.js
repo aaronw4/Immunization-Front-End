@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import PatientHome from './components/patient/PatientHome';
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
               ->  <Doctor Sign In />
               ->  <Patient Sign In />
             <Patient View (Private Route)/>
-              ->  <Patient Home />
+              ->  */<PatientHome />/*
               ->  <Patient Register />
               ->  <Add Child />
               ->  <Permissions />
