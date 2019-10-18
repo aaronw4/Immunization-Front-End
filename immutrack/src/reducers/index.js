@@ -1,3 +1,5 @@
+import { SET_IMMUNIZATION_ACTION } from '../actions';
+
 const initialState = {
     childList: [
         /* 
@@ -19,7 +21,18 @@ const initialState = {
 }
 
 export const reducer = (state = initialState, action) => {
+    
     switch(action.type){
+        case SET_CHILD_ACTION:
+            return {
+                childList: action.payload
+            }
+        case SET_IMMUNIZATION_ACTION:
+            let tempArr = state.childList;
+            tempArr[action.payload.index].immunizations = action.payload.immuneObj;
+            return {
+                childList: tempArr
+            }
         default:
             return state;
     }
