@@ -1,12 +1,12 @@
 import React from "react";
+import { connect } from "react-redux";
 import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 // import Header from '../base/Header'
 // import Footer from '../base/Footer'
 
-const Login = props => {
-  console.log(props);
+const Login = ({ user }) => {
   return (
     <div>
       {/* <Header /> */}
@@ -30,7 +30,7 @@ const Login = props => {
   );
 };
 
-export default withFormik({
+const HOCForm = withFormik({
   mapPropsToValues({ email, password }) {
     return {
       email: email || "",
@@ -41,18 +41,28 @@ export default withFormik({
     // email: Yup.string().required(),
     // password: Yup.string().required()
   }),
-  handleSubmit(values, { resetForm, history }) {
-    const user = localStorage.getItem("user");
+  handleSubmit(values, { resetForm, props }) {
     axiosWithAuth()
-      .post(`/auth/login/${user}`, values)
+      .post(`/auth/login/${props.user}`, values)
       .then(res => {
         console.log(res);
-        localStorage.setItem("token", res.data.token);
-        localStorage.removeItem("user");
+        // localStorage.setItem("token", res.data.token);
+        props.user === "parents"
+          ? props.history.push("/")
+          : props.history.push("/login");
       })
       .catch(err => {
         console.log(err);
         resetForm();
+        props.history.push("/user");
       });
   }
 })(Login);
+
+const mapStateToProps = state => ({
+  user: state.loginReducer.user
+});
+
+const LoginForm = connect(mapStateToProps)(HOCForm);
+
+export default LoginForm;

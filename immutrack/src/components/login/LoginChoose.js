@@ -1,29 +1,29 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import { loginParent, loginProvider } from "../../actions/loginType";
 
-const LoginChoose = ({ history }) => {
-  const patient = e => {
+const LoginChoose = ({ history, loginParent, loginProvider }) => {
+  const parent = e => {
     e.preventDefault();
-    localStorage.setItem("user", "parents");
-    history.push("/login");
+    loginParent();
+    history.push("/parent-login");
   };
 
-  const doctor = e => {
+  const provider = e => {
     e.preventDefault();
-    localStorage.setItem("user", "providers");
-    history.push("/login");
+    loginProvider();
+    history.push("/provider-login");
   };
 
   return (
     <>
-      <button type="button" onClick={patient}>
-        Patient
-      </button>
-      <button type="button" onClick={doctor}>
-        Doctor
-      </button>
+      <button onClick={parent}>Parent</button>
+      <button onClick={provider}>Provider</button>
     </>
   );
 };
 
-export default withRouter(LoginChoose);
+export default connect(
+  null,
+  { loginParent, loginProvider }
+)(LoginChoose);
