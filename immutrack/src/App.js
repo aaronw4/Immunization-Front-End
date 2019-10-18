@@ -6,9 +6,23 @@ function App() {
     <div className="App">
       {
         /*
-            <SignUp />
-            <Patient />
-            <Staff Or Doctor />
+            <Header />
+              ->  <Nav Bar />
+            <Intro Page/>
+            <Choose Sign In />
+            <Sign In View/>
+              ->  <Doctor Sign In />
+              ->  <Patient Sign In />
+            <Patient View (Private Route)/>
+              ->  <Patient Home />
+              ->  <Patient Register />
+              ->  <Add Child />
+              ->  <Permissions />
+            <Doctor View (Private Route)/>
+              -> <Doctor Home />
+              -> <Single Patient />
+              -> <Update Immune />
+            <Footer />
         */
       }
     </div>
