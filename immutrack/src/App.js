@@ -1,11 +1,11 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import Router from "./utils/Router";
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      {
-        /*
+      {/*
             <Header />
               ->  <Nav Bar />
             <Intro Page/>
@@ -23,8 +23,8 @@ function App() {
               -> <Single Patient />
               -> <Update Immune />
             <Footer />
-        */
-      }
+        */}
+      <Router />
     </div>
   );
 }
