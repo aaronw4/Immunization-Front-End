@@ -1,43 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { loginAction } from '../../actions';
+import './PatientHome.css';
 
 const PatientHome = props => {
     // console.log('PROPS: ', props);
     //console.log('PROPS IMMUNIZATIONS: ', props.childImunizations);
 
+    const [active, setActive] = useState(-1);
+    
+
     const backButton = () => {
         props.history.push('/');
     }
 
-    // useEffect(() => {
-    //     props.loginAction('parents', {email: 'parent1@test.com', password: '1234'});
-    // }, [props]);
+    const displayVacc = (index) => {
+        setActive(index);
+    }
 
     return(
         <div>
             {
-                //props.patientList.length === 0 ? null :
                 props.displayPatient && props.patientList.map((patient, index) => {
-                    // console.log('NAME: ', patient);
-                    //debugger;
-                    // console.log('INDEX PATIENT HOME: ', index);
                     return (
-                        <div key={patient.id}>
+                        <div key={patient.id} 
+                             onClick={() => displayVacc(index)} >
+
                             <h1>{patient.firstName}</h1>
-                            {/* {console.log('PATIENT: ', patient)} */}
-                            {/* {console.log('PATIENT IMMUNIZATION: ', patient.immunizations[0])} */}
-                            {/* {JSON.stringify(patient)} */}
-                            {/* <h2>{patient.vaccine}</h2> */}
-                            {patient['immunizations'].map(vac => {
-                                return <div key={vac.id}>
-                                            <h2>{vac.vaccine}</h2>
-                                        </div>
-                            })}
-                            {/* <h2>{props.childImunizations.length > 0 && props.childImunizations[index]['vaccine']}</h2> */}
+
+                            <div className={active === index ? 'Show-Vaccines' : 'Hide-Vaccines'} >
+                                {patient['immunizations'].map(vac => {
+                                    return <h2 key={vac.id}>{vac.vaccine}</h2>
+                                })}
+                            </div>
                     </div>)
             })}
-            Patient Home
             <button onClick={backButton}>Back</button>
         </div>
     )
