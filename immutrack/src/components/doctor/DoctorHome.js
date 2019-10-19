@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {axiosWithAuth} from './axios';
 import {Link, Route} from 'react-router-dom';
 import styled from 'styled-components';
+import Indicator from './Indicator';
 
 const PatientCont = styled.div`
     margin-top: 40px;
@@ -82,7 +83,7 @@ return (
         <PatientCont>
             {searchResults.map(patient => (            
                 <PatientButton>
-                <button>xxxx</button>
+                <Indicator id={patient.id}/>
                 <p>{patient.firstName} {patient.lastName}</p>
                 <Record>Record</Record>
                 </PatientButton>            
