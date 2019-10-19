@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {axiosWithAuth} from './axiosWithAuth';
-import {Link} from 'react-router-dom';
+import {axiosWithAuth} from './axios';
+import {Link, Route} from 'react-router-dom';
 
 export default function DoctorHome() {
     const [patients, setPatients] = useState([]);
@@ -13,7 +13,7 @@ useEffect(() => {
             .get('https://immunization-tracker-bw.herokuapp.com/provider/1/children')
             .then(response => {
                 setPatients(response.data);
-                setSearchResults(response.data.results);
+                setSearchResults(response.data);
                 console.log(response.data);
             })
             .catch(err => {
@@ -25,7 +25,7 @@ useEffect(() => {
 
 useEffect (() => {
     const results = patients.filter(patient =>
-        patient.name.includes(searchTerm)
+        patient.firstName.includes(searchTerm) || patient.lastName.includes(searchTerm)
     );
     setSearchResults(results);
 }, [searchTerm]);
@@ -37,24 +37,25 @@ const handleChange = event => {
 
 return (
     <div>
+        <Route exact path='/'>
         <form className='form'>
-        <input
-          id="name"
-          type="text"
-          name="textfield"
-          placeholder="Search"
-          value={searchTerm}
-          onChange={handleChange}
-          className='input'
-        />
-      </form>
-    <div>
+            <input
+            id="name"
+            type="text"
+            name="textfield"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={handleChange}
+            className='input'
+            />
+        </form>     
+        
         {searchResults.map(patient => (
             <Link to='#'>
-                <p>{patient.name}</p>
+                <p>{patient.firstName} {patient.lastName}</p>
             </Link>
         ))}
-    </div>
+         </Route>
     </div>
 )
 }
