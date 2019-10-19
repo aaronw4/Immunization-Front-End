@@ -28,11 +28,11 @@ const PatientHome = props => {
                             {patient.immunizations && patient.immunizations.map(vac => {
                                 console.log('VAC: ', vac);
                             return (
-                                <>
+                                <div key={vac.id}>
                                     <p>{vac.vaccine}</p>
                                     <p>{`${vac.immunizationCompleted}`}</p>
                                     <p>{vac.date}</p>
-                                </>)
+                                </div>)
                             })}
                     </div>)
             })}

@@ -30,7 +30,7 @@ export const patientReducer = (state = initialState, action) => {
             }
         case SET_IMMUNIZATION_ACTION:
             let tempArr = state.childList;
-            tempArr[action.payload.index].immunizations = action.payload.immuneObj;
+            tempArr[action.payload.index].immunizations = action.payload.immuneObj || {};
             return {
                 childList: tempArr
             }
