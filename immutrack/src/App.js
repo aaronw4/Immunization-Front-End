@@ -1,11 +1,12 @@
 import React from 'react';
 import './App.css';
+import PatientHome from './components/patient/PatientHome';
+import Router from "./utils/Router";
 
 function App() {
   return (
     <div className="App">
-      {
-        /*
+      {/*
             <Header />
               ->  <Nav Bar />
             <Intro Page/>
@@ -14,7 +15,7 @@ function App() {
               ->  <Doctor Sign In />
               ->  <Patient Sign In />
             <Patient View (Private Route)/>
-              ->  <Patient Home />
+              ->  */<PatientHome />/*
               ->  <Patient Register />
               ->  <Add Child />
               ->  <Permissions />
@@ -23,8 +24,8 @@ function App() {
               -> <Single Patient />
               -> <Update Immune />
             <Footer />
-        */
-      }
+        */}
+      <Router />
     </div>
   );
 }
