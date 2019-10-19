@@ -21,7 +21,7 @@ const initialState = {
     ]
 }
 
-export const reducer = (state = initialState, action) => {
+export const patientReducer = (state = initialState, action) => {
     
     switch(action.type){
         case SET_CHILD_ACTION:

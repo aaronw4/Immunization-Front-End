@@ -4,9 +4,9 @@ import { loginAction } from '../../actions';
 
 const PatientHome = props => {
 
-    useEffect(() => {
-        props.loginAction('parents', {email: 'parent1@test.com', password: '1234'});
-    }, [props]);
+    // useEffect(() => {
+    //     props.loginAction('parents', {email: 'parent1@test.com', password: '1234'});
+    // }, [props]);
 
     return(
         <div>

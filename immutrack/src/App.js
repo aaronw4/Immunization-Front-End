@@ -15,7 +15,7 @@ function App() {
               ->  <Doctor Sign In />
               ->  <Patient Sign In />
             <Patient View (Private Route)/>
-              ->  */<PatientHome />/*
+              ->  <PatientHome />
               ->  <Patient Register />
               ->  <Add Child />
               ->  <Permissions />
