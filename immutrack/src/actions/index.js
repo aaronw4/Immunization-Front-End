@@ -6,7 +6,7 @@ export const SET_IMMUNIZATION_ACTION = 'SET_IMMUNIZATION_ACTION';
 
 
 export const loginAction = (userType, credentials) => dispatch => {
-    axiosWithAuth()
+    return axiosWithAuth()
         .post(`/auth/login/${userType}`, credentials)
         .then(res => {
             console.log('RES FROM LOGIN: ', res);

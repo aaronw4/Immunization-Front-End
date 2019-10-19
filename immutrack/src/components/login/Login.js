@@ -59,6 +59,7 @@ const HOCForm = withFormik({
     //     props.history.push("/user");
     //   });
     props.loginAction(props.user, values);
+    props.history.push('/patient-home');
   }
 })(Login);
 
