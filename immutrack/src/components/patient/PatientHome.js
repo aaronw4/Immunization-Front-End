@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { loginAction } from '../../actions';
 
 const PatientHome = props => {
-    console.log('PROPS: ', props);
+    // console.log('PROPS: ', props);
+    //console.log('PROPS IMMUNIZATIONS: ', props.childImunizations);
 
     const backButton = () => {
         props.history.push('/');
@@ -17,23 +18,23 @@ const PatientHome = props => {
         <div>
             {
                 //props.patientList.length === 0 ? null :
-                props.patientList && props.patientList.map(patient => {
-                    console.log('NAME: ', patient);
+                props.displayPatient && props.patientList.map((patient, index) => {
+                    // console.log('NAME: ', patient);
                     //debugger;
+                    // console.log('INDEX PATIENT HOME: ', index);
                     return (
                         <div key={patient.id}>
                             <h1>{patient.firstName}</h1>
-                            {console.log('PATIENT: ', patient)}
+                            {/* {console.log('PATIENT: ', patient)} */}
                             {/* {console.log('PATIENT IMMUNIZATION: ', patient.immunizations[0])} */}
-                            {patient.immunizations && patient.immunizations.map(vac => {
-                                console.log('VAC: ', vac);
-                            return (
-                                <div key={vac.id}>
-                                    <p>{vac.vaccine}</p>
-                                    <p>{`${vac.immunizationCompleted}`}</p>
-                                    <p>{vac.date}</p>
-                                </div>)
+                            {/* {JSON.stringify(patient)} */}
+                            {/* <h2>{patient.vaccine}</h2> */}
+                            {patient['immunizations'].map(vac => {
+                                return <div key={vac.id}>
+                                            <h2>{vac.vaccine}</h2>
+                                        </div>
                             })}
+                            {/* <h2>{props.childImunizations.length > 0 && props.childImunizations[index]['vaccine']}</h2> */}
                     </div>)
             })}
             Patient Home
@@ -43,9 +44,11 @@ const PatientHome = props => {
 }
 
 const mapStateToProps = state => {
-    console.log('STATE: ', state);
+    // console.log('STATE: ', state);
     return {
-        patientList: state.patientReducer.childList
+        patientList: state.patientReducer.childList,
+        // immunizationList: state.patientReducer.childList.immunizations,
+        displayPatient: state.patientReducer.display
     }
 }
 

@@ -43,7 +43,7 @@ const HOCForm = withFormik({
     // email: Yup.string().required(),
     // password: Yup.string().required()
   }),
-  handleSubmit(values, { resetForm, props }) {
+   handleSubmit(values, { resetForm, props }) {
     // axiosWithAuth()
     //   .post(`/auth/login/${props.user}`, values)
     //   .then(res => {
@@ -58,8 +58,8 @@ const HOCForm = withFormik({
     //     resetForm();
     //     props.history.push("/user");
     //   });
-    props.loginAction(props.user, values);
-    props.history.push('/patient-home');
+     props.loginAction(props.user, values); //Need to await
+    setTimeout(() => {props.history.push('/patient-home')}, 1000) ;
   }
 })(Login);
 

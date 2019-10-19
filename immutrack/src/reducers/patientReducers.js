@@ -18,7 +18,8 @@ const initialState = {
                 ]
             }
         */
-    ]
+    ],
+    display: false
 }
 
 export const patientReducer = (state = initialState, action) => {
@@ -26,13 +27,15 @@ export const patientReducer = (state = initialState, action) => {
     switch(action.type){
         case SET_CHILD_ACTION:
             return {
-                childList: action.payload
+                childList: action.payload,
+                display: false
             }
         case SET_IMMUNIZATION_ACTION:
-            let tempArr = state.childList;
-            tempArr[action.payload.index].immunizations = action.payload.immuneObj || {};
+            let tempArr = [...state.childList];
+            tempArr[action.payload.index].immunizations = action.payload.immuneObj || {Empty: 0};
             return {
-                childList: tempArr
+               childList: [...tempArr],
+               display: true
             }
         default:
             return state;
