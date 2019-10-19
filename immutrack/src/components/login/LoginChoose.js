@@ -28,12 +28,11 @@ const useStyles = makeStyles({
     }
   },
   content: {
-    // background: "orangered",
     height: "100vh",
     margin: "0 auto",
     padding: theme.spacing(5),
     [theme.breakpoints.up("md")]: {
-      height: "55vh",
+      height: "350px",
       width: "450px",
       background: "#C5C5C5"
     }
@@ -90,10 +89,15 @@ const LoginChoose = ({ history, loginParent, loginProvider }) => {
   };
 
   return (
-    <Container className={classes.root} maxWidth="false">
+    <Container className={classes.root} maxWidth={false}>
       <Paper className={classes.separate} elevation={0}>
         <Paper elevation={4} className={classes.content}>
-          <Grid container direction="column" alignItems="center">
+          <Grid
+            container
+            direction="column"
+            alignItems="center"
+            justify="center"
+          >
             <Typography component="h1" variant="h4">
               I am a...
             </Typography>

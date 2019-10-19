@@ -12,8 +12,6 @@ import {
   Paper
 } from "@material-ui/core";
 import { theme } from "../../styles/theme";
-// import Header from '../base/Header'
-// import Footer from '../base/Footer'
 
 const useStyles = makeStyles({
   root: {
@@ -40,8 +38,8 @@ const useStyles = makeStyles({
     padding: theme.spacing(4),
     background: "#fff",
     [theme.breakpoints.up("sm")]: {
+      height: "400px",
       width: "375px",
-      height: "45vh",
       background: "#C5C5C5"
     }
   },
@@ -83,9 +81,8 @@ const Login = ({ errors, touched, values }) => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root} maxWidth="false">
+    <Container className={classes.root} maxWidth={false}>
       <Grid className={classes.separate} container justify="center">
-        {/* <Header /> */}
         <Paper className={classes.content} elevation={4}>
           <Form className={classes.form}>
             <Grid container direction="column">
@@ -122,7 +119,6 @@ const Login = ({ errors, touched, values }) => {
             {touched.password && errors.password && <p>{errors.password}</p>}
           </Grid>
         </Paper>
-        {/* <Footer /> */}
       </Grid>
     </Container>
   );
