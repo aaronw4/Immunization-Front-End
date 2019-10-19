@@ -12,7 +12,6 @@ import {
   Paper
 } from "@material-ui/core";
 import { theme } from "../../styles/theme";
-import upperCase from "upper-case";
 // import Header from '../base/Header'
 // import Footer from '../base/Footer'
 
@@ -74,7 +73,6 @@ const StyledButton = withStyles({
     fontFamily: theme.typography.fontFamily,
     fontSize: "15px",
     fontWeight: "500",
-    textTransform: upperCase,
     "&:hover": {
       background: theme.palette.primary.light
     }
