@@ -6,7 +6,7 @@ import { loginAction } from "../../actions";
 // import Header from '../base/Header'
 // import Footer from '../base/Footer'
 
-const Login = ({ user }) => {
+const Login = ({ errors, touched, values }) => {
   return (
     <div>
       {/* <Header /> */}
@@ -25,6 +25,8 @@ const Login = ({ user }) => {
         />
         <button type="submit">submit</button>
       </Form>
+      {touched.email && errors.email && <p>{errors.email}</p>}
+      {touched.password && errors.password && <p>{errors.password}</p>}
       {/* <Footer /> */}
     </div>
   );
@@ -38,8 +40,10 @@ const HOCForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    // email: Yup.string().required(),
-    // password: Yup.string().required()
+    email: Yup.string()
+      .email("Please enter a valid email")
+      .required("Email is required"),
+    password: Yup.string().required("Password is required")
   }),
   handleSubmit(values, { resetForm, props }) {
     props.loginAction(props.user, values);
