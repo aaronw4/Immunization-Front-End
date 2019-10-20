@@ -16,8 +16,8 @@ const PatientHome = props => {
     // }, []);
     
 
-    const back = () => {
-        props.history.push('/');
+    const addChild = () => {
+        setTimeout(() => props.history.push('/add-child'), 1000);
     }
 
     const displayVacc = (index) => {
@@ -43,7 +43,7 @@ const PatientHome = props => {
                             </div>
                     </div>)
             })}
-            <button onClick={back}>back</button>
+            <button onClick={addChild}>Add Child</button>
         </div>
     )
 }

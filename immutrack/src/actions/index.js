@@ -30,7 +30,7 @@ export function getImmunizations(childArr, history) {
                     console.log('INDEX: ', index);
                     console.log('CHILD ARRAY LENGTH: ', childArr.length - 1);
                     if(index === childArr.length - 1)
-                        history.push(`/patient-home`);
+                        setTimeout(() => history.push(`/patient-home`), 1000);
                 })
                 .catch(err => console.log('ERROR IMMUNIZATION REQ: ', err));
         })
@@ -52,7 +52,12 @@ export function getChildrenAction(parentId, props){
 
 
 
-export const addChildAction = child => dispatch => {
+export const addChildAction = (parentId, childObj, props) => dispatch => {
     axiosWithAuth()
-        .post(`/parent/:parentid/children`)
+        .post(`/parent/${parentId}/children`, childObj)
+        .then(res => {
+            console.log('RES FROM ADD CHILD ACTION: ', res);
+            getChildrenAction(parentId, props)(dispatch);
+        })
+        .catch(err => console.log('ERROR: ', err));
 }

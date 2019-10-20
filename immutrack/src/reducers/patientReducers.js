@@ -37,6 +37,7 @@ export const patientReducer = (state = initialState, action) => {
     switch(action.type){
         case SET_CHILD_ACTION:
             return {
+                ...state,
                 childList: action.payload,
                 display: false
             }
@@ -44,6 +45,7 @@ export const patientReducer = (state = initialState, action) => {
             let tempArr = [...state.childList];
             tempArr[action.payload.index].immunizations = action.payload.immuneObj || {Empty: 0};
             return {
+               ...state,
                childList: [...tempArr],
                display: true
             }
