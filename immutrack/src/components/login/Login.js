@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
-import { loginAction } from "../../actions";
+import { getParentAction } from "../../actions";
 import {
   makeStyles,
   withStyles,
@@ -77,7 +77,7 @@ const StyledButton = withStyles({
   }
 })(Button);
 
-const Login = ({ errors, touched, values }) => {
+const Login = ({ errors, touched, values, history }) => {
   const classes = useStyles();
 
   return (
@@ -120,6 +120,7 @@ const Login = ({ errors, touched, values }) => {
           </Grid>
         </Paper>
       </Grid>
+      <button type='button' onClick={() => history.push('/patient-home')}>Patient Home</button>
     </Container>
   );
 };
@@ -137,7 +138,7 @@ const HOCForm = withFormik({
       .required("Email is required"),
     password: Yup.string().required("Password is required")
   }),
-   handleSubmit(values, { resetForm, props }) {
+     handleSubmit(values, { resetForm, props }) {
     // axiosWithAuth()
     //   .post(`/auth/login/${props.user}`, values)
     //   .then(res => {
@@ -152,8 +153,8 @@ const HOCForm = withFormik({
     //     resetForm();
     //     props.history.push("/user");
     //   });
-     props.loginAction(props.user, values); //Need to await
-    setTimeout(() => {props.history.push('/patient-home')}, 1000) ;
+    //console.log('here1');
+    props.getParentAction(props, values); //Need to await
   }
 })(Login);
 
@@ -163,7 +164,7 @@ const mapStateToProps = state => ({
 
 const LoginForm = connect(
   mapStateToProps,
-  { loginAction }
+  { getParentAction }
 )(HOCForm);
 
 export default LoginForm;

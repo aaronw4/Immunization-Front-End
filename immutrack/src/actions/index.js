@@ -3,30 +3,56 @@ import { axiosWithAuth } from '../utils/axiosWithAuth';
 
 export const SET_CHILD_ACTION = 'SET_CHILD_ACTION';
 export const SET_IMMUNIZATION_ACTION = 'SET_IMMUNIZATION_ACTION';
+export const SET_PARENT_ACTION = 'SET_PARENT_ACTION';
 
-export function loginAction (userType, credentials){
+export function getParentAction (props, credentials){
     return function(dispatch){
+        let parentId = -1;
         axiosWithAuth()
-            .post(`/auth/login/${userType}`, credentials)
+            .post(`/auth/login/${props.user}`, credentials)
             .then(res => {
                 // console.log('RES FROM LOGIN: ', res);
                 localStorage.setItem('token', res.data.token);
-                axiosWithAuth()
-                    .get(`/parent/${res.data.user.id}/children`)
-                    .then(res => {
-                        dispatch({type: SET_CHILD_ACTION, payload: res.data});
-                        res.data.map((child, index) => {
-                            console.log('here');
-                            axiosWithAuth().get(`/child/${child.id}/immunization`)
-                                .then(res => {
-                                    console.log('IMMUNIZATIONS LOOP ACTION: ', res);
-                                    dispatch({type: SET_IMMUNIZATION_ACTION, payload: {immuneObj: res.data, index: index}});
-                                })
-                                .catch(err => console.log('ERROR IMMUNIZATION REQ: ', err.message));
-                        })
-                    })
-                    .catch(err => console.log('ERROR CHILD REQ: ', err.message));
+                parentId = res.data.user.id;
+                dispatch({type: SET_PARENT_ACTION, payload: parentId});
+                getChildrenAction(parentId, props)(dispatch);
             })
-            .catch(err => console.log('ERROR LOGIN: ', err.message));
+            .catch(err => console.log('ERROR LOGIN: ', err));
     }
+}
+
+export function getImmunizations(childArr, history) {
+    return function(dispatch){
+        childArr.map((child, index) => {
+            axiosWithAuth().get(`/child/${child.id}/immunization`)
+            .then(res => {
+                    dispatch({type: SET_IMMUNIZATION_ACTION, payload: {immuneObj: res.data, index: index}});
+                    console.log('INDEX: ', index);
+                    console.log('CHILD ARRAY LENGTH: ', childArr.length - 1);
+                    if(index === childArr.length - 1)
+                        history.push(`/patient-home`);
+                })
+                .catch(err => console.log('ERROR IMMUNIZATION REQ: ', err));
+        })
+    }
+}
+
+export function getChildrenAction(parentId, props){
+    return function(dispatch){
+        axiosWithAuth()
+           .get(`/parent/${parentId}/children`)
+           .then(res => {
+               dispatch({type: SET_CHILD_ACTION, payload: res.data});
+               // console.log('SET CHILD');
+               getImmunizations(res.data, props.history)(dispatch);
+           })
+           .catch(err => console.log('ERROR CHILD REQ: ', err));
+    }
+}
+
+
+
+export const addChildAction = child => dispatch => {
+    axiosWithAuth()
+        .post(`/parent/:parentid/children`)
 }

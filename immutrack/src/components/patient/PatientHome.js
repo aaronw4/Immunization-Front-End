@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { loginAction } from '../../actions';
+import { getParentAction } from '../../actions';
+import { getChildrenAction } from '../../actions';
+import { getImmunizations } from '../../actions';
 import './PatientHome.css';
 
 const PatientHome = props => {
@@ -8,9 +10,13 @@ const PatientHome = props => {
     //console.log('PROPS IMMUNIZATIONS: ', props.childImunizations);
 
     const [active, setActive] = useState(-1);
+
+    // useEffect(() => {
+    //     props.getChildrenAction(props.parentId);
+    // }, []);
     
 
-    const backButton = () => {
+    const back = () => {
         props.history.push('/');
     }
 
@@ -22,12 +28,14 @@ const PatientHome = props => {
         <div>
             {
                 props.displayPatient && props.patientList.map((patient, index) => {
+                    
+                    // console.log('PATIENT: ', patient);
                     return (
                         <div key={patient.id} 
                              onClick={() => displayVacc(index)} >
 
                             <h1>{patient.firstName}</h1>
-
+                            {/* {console.log('SECOND')} */}
                             <div className={active === index ? 'Show-Vaccines' : 'Hide-Vaccines'} >
                                 {patient['immunizations'].map(vac => {
                                     return <h2 key={vac.id}>{vac.vaccine}</h2>
@@ -35,7 +43,7 @@ const PatientHome = props => {
                             </div>
                     </div>)
             })}
-            <button onClick={backButton}>Back</button>
+            <button onClick={back}>back</button>
         </div>
     )
 }
@@ -45,8 +53,11 @@ const mapStateToProps = state => {
     return {
         patientList: state.patientReducer.childList,
         // immunizationList: state.patientReducer.childList.immunizations,
-        displayPatient: state.patientReducer.display
+        displayPatient: state.patientReducer.display,
+        parentId: state.patientReducer.parentId
     }
 }
 
-export default connect(mapStateToProps, {loginAction})(PatientHome);
+export default 
+connect(mapStateToProps, {getParentAction, getChildrenAction, getImmunizations})
+(PatientHome);
