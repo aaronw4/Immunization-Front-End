@@ -12,6 +12,7 @@ background: #19602D
 `;
 
 const Yellow = styled.button`
+margin-left: 5px;
 width: 40px;
 height: 40px;
 left: 39px;
@@ -20,6 +21,7 @@ background: linear-gradient(0deg, #DBF829, #DBF829), #F3F3F3;
 `;
 
 const White = styled.button`
+margin-left: 5px;
 width: 40px;
 height: 40px;
 left: 39px;

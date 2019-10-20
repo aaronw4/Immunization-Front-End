@@ -54,8 +54,7 @@ useEffect(() => {
 }, [])
 
 useEffect (() => {    
-    const results = patients.filter(patient =>
-        
+    const results = patients.filter(patient =>        
         patient.firstName.includes(searchTerm) || patient.lastName.includes(searchTerm)
     );
     setSearchResults(results);
@@ -85,7 +84,7 @@ return (
                 <PatientButton>
                 <Indicator id={patient.id}/>
                 <p>{patient.firstName} {patient.lastName}</p>
-                <Record>Record</Record>
+                <Link to={`/${patient.id}`}><Record>Record</Record></Link>
                 </PatientButton>            
             ))}
         </PatientCont>
