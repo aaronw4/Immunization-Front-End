@@ -3,6 +3,24 @@ import styled from 'styled-components';
 import introImg from './introImg.jpg';
 import { Link } from "react-router-dom";
 
+
+const IntroPg = styled.div`
+    display:flex;
+`;
+
+const IntroCont = styled.div`
+    max-width: 985px;
+    margin-right: auto;
+    margin-left: auto;
+`;
+
+
+const IntroBackground = styled.img`
+    @media (max-width: 800px) {
+        display: none;
+    }
+`;
+
 const IntroHeader = styled.h2`
     font-family: Barlow;
     font-style: normal;
@@ -70,11 +88,15 @@ const IntroButton = styled.button`
 export default function IntroPage() {
 
     return(
-        <div>
+      <IntroPg>
+        <IntroBackground src={background}/>
+        <IntroCont>
             <IntroHeader>ImmuTrack</IntroHeader>
             <IntroImgCont><IntroImg src={introImg}/></IntroImgCont>
             <IntroDesc>ImmuTrack gives parents the ability to track their children’s immunization records. Talk to your doctor to receive a code that will connect your account to your preferred office.</IntroDesc>
             <Link to="/login"><IntroButton>SIGN UP</IntroButton></Link>
-        </div>
+        </IntroCont>
+        <IntroBackground src={background}/>
+      </IntroPg>
     )
 }
