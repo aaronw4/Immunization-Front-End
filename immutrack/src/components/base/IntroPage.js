@@ -19,11 +19,22 @@ const IntroImgCont = styled.div`
     margin: 57px auto 0 auto;
     border-radius: 200px;
     box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.25);
+    
+    @media (max-width: 500px) {
+        width: 333px;
+        height: 150px;
+    };
 `;
 
 const IntroImg = styled.img`
     max-width: 734px;
     margin-top: -100px;    
+
+    @media (max-width: 500px) {
+        max-width: 450px;
+        margin-top: -50px;  
+        margin-left: -30px; 
+    };
 `;
 
 const IntroDesc = styled.p`
@@ -35,6 +46,12 @@ const IntroDesc = styled.p`
     width: 422px;
     margin: 72px auto 0 auto;
     text-align: left;
+
+    @media (max-width: 500px) {
+        width: 244px;
+        font-size: 18px;
+        line-height: 25px;
+    }
 `;
 
 const IntroButton = styled.button`
