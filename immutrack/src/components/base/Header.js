@@ -43,7 +43,7 @@ const Header = ({ location, history }) => {
           />
         </Grid>
         <Grid item xs={8}>
-          <Typography component="header" variant="h5" centered>
+          <Typography component="header" variant="h5">
             ImmuTrack
           </Typography>
         </Grid>
@@ -81,7 +81,7 @@ const Header = ({ location, history }) => {
         />
       </Grid>
       <Grid item xs={8}>
-        <Typography component="header" variant="h5" centered>
+        <Typography component="header" variant="h5">
           ImmuTrack
         </Typography>
       </Grid>
