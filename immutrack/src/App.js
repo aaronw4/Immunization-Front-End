@@ -4,7 +4,7 @@ import PatientHome from "./components/patient/PatientHome";
 import Router from "./utils/Router";
 
 import Header from "./components/base/Header";
-import { Route } from "react-router-dom";
+import Footer from "./components/base/Footer";
 
 function App() {
   return (
@@ -29,6 +29,7 @@ function App() {
               -> <Update Immune />
             <Footer />
         */}
+      <Footer />
       <Router />
     </div>
   );
