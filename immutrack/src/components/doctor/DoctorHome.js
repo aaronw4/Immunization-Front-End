@@ -83,7 +83,7 @@ return (
                 id="name"
                 type="text"
                 name="textfield"
-                placeholder="&#x1F50D;"
+                placeholder="&#xF002;"
                 value={searchTerm}
                 onChange={handleChange}
                 className='input'
