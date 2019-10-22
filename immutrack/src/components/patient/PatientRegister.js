@@ -1,62 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Form, Field, withFormik } from "formik";
-import PhoneInput from "react-phone-number-input/basic-input";
 import * as Yup from "yup";
-import { makeStyles, Grid, Paper } from "@material-ui/core";
-import { theme } from "../../styles/theme";
+import { Grid, Paper } from "@material-ui/core";
 import { LoginButton } from "../../styles/muiStyledButtons";
-
-const useStyles = makeStyles({
-  root: {
-    height: "100vh",
-    width: "100%",
-    margin: "0 auto",
-    paddingTop: theme.spacing(5),
-    background: "#fff",
-    fontFamily: theme.typography.fontFamily,
-    fontSize: "15px",
-    [theme.breakpoints.up("md")]: {
-      width: "80%"
-    }
-  },
-  container: {
-    margin: "0 auto",
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(6),
-      width: "400px",
-      background: "#C5C5C5"
-    }
-  },
-  inputs: {
-    height: "35px",
-    width: "300px",
-    margin: "0 auto",
-    "&:not(:first-child)": {
-      marginTop: "30px"
-    }
-  },
-  errors: {
-    marginTop: theme.spacing(4),
-    color: theme.palette.secondary.dark
-  }
-});
-
-const Phone = ({ field, form, ...props }) => {
-  const classes = useStyles();
-  return (
-    <PhoneInput
-      placeholder="Phone Number"
-      className={classes.inputs}
-      country="US"
-      value=""
-      onChange={value => {
-        if (!form.touched[field.name]) form.setFieldTouched(field.name);
-        form.setFieldValue(field.name, value);
-      }}
-    />
-  );
-};
+import { useStyles } from "../../styles/muiFormStyles";
 
 const RegisterForm = ({ errors, touched, values }) => {
   const classes = useStyles();
@@ -64,38 +12,50 @@ const RegisterForm = ({ errors, touched, values }) => {
     <Paper className={classes.root} elevation={0}>
       <Form className={classes.container}>
         <Grid container direction="column" alignItems="center" justify="center">
+          <div className={classes.labels}>
+            <label htmlFor="firstName">First Name</label>
+          </div>
           <Field
-            placeholder="First Name"
             className={classes.inputs}
             type="text"
             name="firstName"
             autoComplete="false"
           />
+          <div className={classes.labels}>
+            <label htmlFor="lastName">Last Name</label>
+          </div>
           <Field
-            placeholder="Last Name"
             className={classes.inputs}
             type="text"
             name="lastName"
             autoComplete="false"
           />
+          <div className={classes.labels}>
+            <label htmlFor="email">Email</label>
+          </div>
           <Field
-            placeholder="Email"
             className={classes.inputs}
             type="text"
             name="email"
             autoComplete="false"
           />
+          <div className={classes.labels}>
+            <label htmlFor="password">Password</label>
+          </div>
           <Field
-            placeholder="Password"
             className={classes.inputs}
             type="password"
             name="password"
             autoComplete="false"
           />
+          <div className={classes.labels}>
+            <label htmlFor="phone">Phone Number</label>
+          </div>
           <Field
+            className={classes.inputs}
+            type="text"
             name="phone"
-            component={Phone}
-            // autoComplete="false"
+            autoComplete="false"
           />
           <LoginButton variant="contained" type="submit">
             sign up
