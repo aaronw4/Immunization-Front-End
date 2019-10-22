@@ -1,19 +1,17 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { makeStyles, Grid, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import { theme } from "../../styles/theme";
 
 const useStyles = makeStyles({
   root: {
-    width: "80%",
+    width: "100%",
     margin: "0 auto",
     padding: theme.spacing(2),
-    [theme.breakpoints.up("sm")]: {
-      width: "70%"
-    },
+    background: "#fff",
     [theme.breakpoints.up("md")]: {
-      width: "50%"
+      width: "80%"
     }
   }
 });

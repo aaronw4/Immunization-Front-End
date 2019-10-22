@@ -3,55 +3,34 @@ import { connect } from "react-redux";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { loginAction } from "../../actions";
-import {
-  makeStyles,
-  withStyles,
-  Container,
-  Button,
-  Grid,
-  Paper
-} from "@material-ui/core";
+import { makeStyles, Grid, Paper } from "@material-ui/core";
 import { theme } from "../../styles/theme";
+import { LoginButton } from "../../styles/muiStyledButtons";
 
 const useStyles = makeStyles({
   root: {
-    width: "100%",
-    background: "gray", // replace with background image
-    fontFamily: theme.typography.fontFamily,
-    fontSize: "15px"
-  },
-  separate: {
     height: "100vh",
     width: "100%",
     margin: "0 auto",
+    paddingTop: theme.spacing(5),
     background: "#fff",
-    [theme.breakpoints.between("sm", "md")]: {
-      width: "80%"
-    },
+    fontFamily: theme.typography.fontFamily,
+    fontSize: "15px",
     [theme.breakpoints.up("md")]: {
-      width: "60%"
+      width: "80%"
     }
   },
-  content: {
-    height: "100vh",
-    width: "100%",
-    padding: theme.spacing(4),
-    background: "#fff",
-    [theme.breakpoints.up("sm")]: {
-      height: "400px",
-      width: "375px",
+  container: {
+    margin: "0 auto",
+    [theme.breakpoints.up("md")]: {
+      padding: theme.spacing(6),
+      width: "400px",
       background: "#C5C5C5"
     }
   },
-  form: {
-    width: "90%",
-    margin: "0 auto"
-  },
-  spacer: {
-    marginTop: theme.spacing(2)
-  },
   inputs: {
-    width: "100%",
+    height: "35px",
+    width: "300px",
     margin: "0 auto"
   },
   errors: {
@@ -60,67 +39,46 @@ const useStyles = makeStyles({
   }
 });
 
-const StyledButton = withStyles({
-  root: {
-    height: "50px",
-    width: "175px",
-    margin: "0 auto",
-    marginTop: theme.spacing(4),
-    background: theme.palette.primary.dark,
-    color: theme.palette.primary.contrastText,
-    fontFamily: theme.typography.fontFamily,
-    fontSize: "15px",
-    fontWeight: "500",
-    "&:hover": {
-      background: theme.palette.primary.light
-    }
-  }
-})(Button);
-
 const Login = ({ errors, touched, values }) => {
   const classes = useStyles();
 
   return (
-    <Container className={classes.root} maxWidth={false}>
-      <Grid className={classes.separate} container justify="center">
-        <Paper className={classes.content} elevation={4}>
-          <Form className={classes.form}>
-            <Grid container direction="column">
-              <label htmlFor="email">Email</label>
-              <Field
-                className={classes.inputs}
-                component="input"
-                type="text"
-                name="email"
-                autoComplete="false"
-              />
-              <label className={classes.spacer} htmlFor="password">
-                Password
-              </label>
-              <Field
-                className={classes.inputs}
-                component="input"
-                type="password"
-                name="password"
-                autoComplete="false"
-              />
-              <StyledButton variant="contained" type="submit">
-                sign in
-              </StyledButton>
-            </Grid>
-          </Form>
-          <Grid
-            className={classes.errors}
-            container
-            direction="column"
-            alignItems="center"
-          >
-            {touched.email && errors.email && <p>{errors.email}</p>}
-            {touched.password && errors.password && <p>{errors.password}</p>}
-          </Grid>
-        </Paper>
-      </Grid>
-    </Container>
+    <Paper className={classes.root} elevation={0}>
+      <Form className={classes.container}>
+        <Grid container direction="column" alignItems="center" justify="center">
+          <label htmlFor="email">Email</label>
+          <Field
+            className={classes.inputs}
+            component="input"
+            type="text"
+            name="email"
+            autoComplete="false"
+          />
+          <label htmlFor="password" style={{ marginTop: "30px" }}>
+            Password
+          </label>
+          <Field
+            className={classes.inputs}
+            component="input"
+            type="password"
+            name="password"
+            autoComplete="false"
+          />
+          <LoginButton variant="contained" type="submit">
+            sign in
+          </LoginButton>
+        </Grid>
+        <Grid
+          className={classes.errors}
+          container
+          direction="column"
+          alignItems="center"
+        >
+          {touched.email && errors.email && <p>{errors.email}</p>}
+          {touched.password && errors.password && <p>{errors.password}</p>}
+        </Grid>
+      </Form>
+    </Paper>
   );
 };
 
