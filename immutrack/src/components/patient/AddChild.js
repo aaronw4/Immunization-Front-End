@@ -11,12 +11,7 @@ const AddChild = props => {
 
     async function handleSubmit(e){
         e.preventDefault();
-        await props.addChildAction(props.parentId, {
-            "firstName": "Added Child",
-            "lastName": "123",
-            "dateOfBirth": "11/11/11",
-            "socialSecuirtyNumber": "222-22-2222"
-        }, props);
+        await props.addChildAction(props.userId, child, props);
         
     }
 
@@ -38,17 +33,17 @@ const AddChild = props => {
                onChange={handleInput}
                value={child.dateOfBirth}/>
         <input type='text' 
-               name='socialSecurityNumber' 
+               name='socialSecuirtyNumber' 
                placeholder='Social Security Number'
                onChange={handleInput}
-               value={child.socialSecurityNumber}/>
+               value={child.socialSecuirtyNumber}/>
         <button type='submit'>submit</button>
     </form>)
 }
 
 const mapStateToProps = state => {
     return {
-        parentId: state.patientReducer.parentId
+        userId: state.patientReducer.userId
     }
 }
 

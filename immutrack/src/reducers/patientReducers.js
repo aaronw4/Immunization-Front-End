@@ -1,6 +1,6 @@
 import { SET_IMMUNIZATION_ACTION } from '../actions';
 import { SET_CHILD_ACTION } from '../actions';
-import { SET_PARENT_ACTION } from '../actions';
+import { SET_USER_ACTION } from '../actions';
 
 const initialState = {
     childList: [
@@ -29,7 +29,7 @@ const initialState = {
         */
     ],
     display: false,
-    parentId: -1
+    userId: -1
 }
 
 export const patientReducer = (state = initialState, action) => {
@@ -49,10 +49,10 @@ export const patientReducer = (state = initialState, action) => {
                childList: [...tempArr],
                display: true
             }
-        case SET_PARENT_ACTION:
+        case SET_USER_ACTION:
             return {
                 ...state,
-                parentId: action.payload,
+                userId: action.payload,
                 display: false
             }
         default:
