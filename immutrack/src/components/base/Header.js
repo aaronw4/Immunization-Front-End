@@ -1,5 +1,5 @@
 import React from "react";
-import { withRouter, Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { makeStyles, Grid, Typography } from "@material-ui/core";
 import { ArrowBack } from "@material-ui/icons";
 import { theme } from "../../styles/theme";
