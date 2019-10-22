@@ -1,11 +1,11 @@
 import React from "react";
-import styled from 'styled-components';
-import introImg from './introImg.jpg';
+import styled from "styled-components";
+import introImg from "./introImg.jpg";
+import background from "./introBackground.jpg";
 import { Link } from "react-router-dom";
 
-
 const IntroPg = styled.div`
-  display:flex;
+  display: flex;
 `;
 
 const IntroCont = styled.div`
@@ -14,13 +14,12 @@ const IntroCont = styled.div`
   margin-left: auto;
 `;
 
-
 const IntroBackground = styled.img`
   height: 93vh;
   width: 16vw;
 
   @media (max-width: 800px) {
-      display: none;
+    display: none;
   }
 `;
 
@@ -40,22 +39,22 @@ const IntroImgCont = styled.div`
   margin: 57px auto 0 auto;
   border-radius: 200px;
   box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.25);
-  
+
   @media (max-width: 500px) {
-      width: 333px;
-      height: 150px;
-  };
+    width: 333px;
+    height: 150px;
+  }
 `;
 
 const IntroImg = styled.img`
   max-width: 734px;
-  margin-top: -100px;    
+  margin-top: -100px;
 
   @media (max-width: 500px) {
-      max-width: 450px;
-      margin-top: -50px;  
-      margin-left: -30px; 
-  };
+    max-width: 450px;
+    margin-top: -50px;
+    margin-left: -30px;
+  }
 `;
 
 const IntroDesc = styled.p`
@@ -69,15 +68,15 @@ const IntroDesc = styled.p`
   text-align: left;
 
   @media (max-width: 500px) {
-      width: 244px;
-      font-size: 18px;
-      line-height: 25px;
+    width: 244px;
+    font-size: 18px;
+    line-height: 25px;
   }
 `;
 
 const IntroButton = styled.button`
-  background: #87A9B0;
-  border: 1px solid #527F89;
+  background: #87a9b0;
+  border: 1px solid #527f89;
   box-sizing: border-box;
   font-family: Barlow;
   font-style: normal;
@@ -89,18 +88,24 @@ const IntroButton = styled.button`
 `;
 
 export default function IntroPage() {
-
-  return(
+  return (
     <IntroPg>
-      <IntroBackground src={background}/>
+      <IntroBackground src={background} />
       <IntroCont>
-          <IntroHeader>ImmuTrack</IntroHeader>
-          <IntroImgCont><IntroImg src={introImg}/></IntroImgCont>
-          <IntroDesc>ImmuTrack gives parents the ability to track their children’s immunization records. Talk to your doctor to receive a code that will connect your account to your preferred office.</IntroDesc>
-          <Link to="/login"><IntroButton>SIGN UP</IntroButton></Link>
+        <IntroHeader>ImmuTrack</IntroHeader>
+        <IntroImgCont>
+          <IntroImg src={introImg} />
+        </IntroImgCont>
+        <IntroDesc>
+          ImmuTrack gives parents the ability to track their children’s
+          immunization records. Talk to your doctor to receive a code that will
+          connect your account to your preferred office.
+        </IntroDesc>
+        <Link to="/login">
+          <IntroButton>SIGN UP</IntroButton>
+        </Link>
       </IntroCont>
-      <IntroBackground src={background}/>
+      <IntroBackground src={background} />
     </IntroPg>
-  )
+  );
 }
-
