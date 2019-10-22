@@ -1,11 +1,15 @@
-import React from 'react';
-import './App.css';
-import PatientHome from './components/patient/PatientHome';
+import React from "react";
+import "./App.css";
+import PatientHome from "./components/patient/PatientHome";
 import Router from "./utils/Router";
+
+import Header from "./components/base/Header";
+import { Route } from "react-router-dom";
 
 function App() {
   return (
     <div className="App">
+      <Header />
       {/*
             <Header />
               ->  <Nav Bar />
@@ -15,7 +19,7 @@ function App() {
               ->  <Doctor Sign In />
               ->  <Patient Sign In />
             <Patient View (Private Route)/>
-              ->  */<PatientHome />/*
+              ->  <PatientHome />
               ->  <Patient Register />
               ->  <Add Child />
               ->  <Permissions />
