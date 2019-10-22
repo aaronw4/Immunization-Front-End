@@ -3,29 +3,29 @@ import {axiosWithAuth} from './axios';
 import styled from 'styled-components';
 
 const Green = styled.button`
-margin-left: 5px;
-width: 40px;
-height: 40px;
-left: 39px;
-top: 196px;
-background: #19602D
+border-radius: 100%;
+width: 20px;
+height: 20px;
+border: 2px solid #FFFFFF;
+padding-top: 5px;
+background: #229449;
 `;
 
 const Yellow = styled.button`
-margin-left: 5px;
-width: 40px;
-height: 40px;
-left: 39px;
-top: 250px;
-background: linear-gradient(0deg, #DBF829, #DBF829), #F3F3F3;
+border-radius: 100%;
+width: 20px;
+height: 20px;
+padding-top: 5px;
+background: #DBD424;
+border: 2px solid #FFFFFF;
 `;
 
 const White = styled.button`
-margin-left: 5px;
-width: 40px;
-height: 40px;
-left: 39px;
-top: 304px;
+border-radius: 100%;
+width: 20px;
+height: 20px;
+border: 2px solid #FFFFFF;
+padding-top: 5px;
 background: linear-gradient(0deg, #F3F3F3, #F3F3F3), #F3F3F3;
 `;
 
@@ -45,10 +45,21 @@ useEffect(() => {
             });
     }
     getShotInfo();
-}, [])
+    
+}, [props.id])
+
+var dates = immunization.map(date => date.dateCompleted);
+var today = new Date();
+var nextDate = dates.filter(date => today > date);
+var number = dates.indexOf(nextDate);
+var permisson = ((immunization || {})[number] || {}).grantPermission;
+console.log(((immunization || {})[0] || {}).grantPermission)
 
     return(
-        <Green/>
+        <div>
+            {nextDate.length === 0 ? <White/> : null}
+            {nextDate.length !== 0 && permisson === false ? <Yellow/> : null}
+            {nextDate.length !== 0 && permisson === true ? <Green/> : null}
+        </div>
     )
-
 }

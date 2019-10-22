@@ -3,6 +3,7 @@ import {axiosWithAuth} from './axios';
 import {Link, Route} from 'react-router-dom';
 import styled from 'styled-components';
 import Indicator from './Indicator';
+import SinglePatient from "./SinglePatient";
 
 const PatientCont = styled.div`
     margin-top: 40px;
@@ -13,7 +14,7 @@ const PatientButton = styled.div`
     height: 50px;
     left: 32px;
     top: 191px;    
-    background: #C4C4C4;
+    background: #E1F2F6;
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -22,8 +23,17 @@ const PatientButton = styled.div`
     align-items: center;
 `;
 
+const IndicatorCont = styled.div`
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    background: #A1A1A1;
+    margin-left: 10px;
+`;
+
 const Record = styled.button`
-    background: #848484;
+    background: #C67474;
+    border: 1px solid #924646;
     border-radius: 20px;
     width: 80px;
     height: 25px;
@@ -67,28 +77,31 @@ const handleChange = event => {
 return (
     <div>
         <Route exact path='/'>
-        <h2>Patient Status</h2>
-        <form className='form'>
-            <input
-            id="name"
-            type="text"
-            name="textfield"
-            placeholder="&#x1F50D;"
-            value={searchTerm}
-            onChange={handleChange}
-            className='input'
-            />
-        </form>     
-        <PatientCont>
-            {searchResults.map(patient => (            
-                <PatientButton>
-                <Indicator id={patient.id}/>
-                <p>{patient.firstName} {patient.lastName}</p>
-                <Link to={`/${patient.id}`}><Record>Record</Record></Link>
-                </PatientButton>            
-            ))}
-        </PatientCont>
+            <h2>Patient Status</h2>
+            <form className='form'>
+                <input
+                id="name"
+                type="text"
+                name="textfield"
+                placeholder="&#x1F50D;"
+                value={searchTerm}
+                onChange={handleChange}
+                className='input'
+                />
+            </form>     
+            <PatientCont>
+                {searchResults.map(patient => (            
+                    <PatientButton>
+                        <IndicatorCont><Indicator id={patient.id}/></IndicatorCont>
+                        <p>{patient.firstName} {patient.lastName}</p>
+                        <Link to={`/${patient.id}`}>
+                            <Record>Record</Record>
+                        </Link>
+                    </PatientButton>            
+                ))}
+            </PatientCont>
          </Route>
+         <Route path='/:id'><SinglePatient/></Route>
     </div>
 )
 }
