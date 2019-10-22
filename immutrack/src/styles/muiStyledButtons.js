@@ -51,3 +51,17 @@ export const LoginButton = withStyles({
     }
   }
 })(Button);
+
+export const LogoutButton = withStyles({
+  root: {
+    height: "50px",
+    width: "100px",
+    background: theme.palette.primary.dark,
+    fontFamily: theme.typography.fontFamily,
+    fontSize: "15px",
+    fontWeight: "500",
+    "&:hover": {
+      background: theme.palette.primary.light
+    }
+  }
+})(Button);
