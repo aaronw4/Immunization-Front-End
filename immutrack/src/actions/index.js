@@ -9,6 +9,7 @@ export const loginAction = (userType, credentials) => dispatch => {
     axiosWithAuth()
         .post(`/auth/login/${userType}`, credentials)
         .then(res => {
+            console.log('RES FROM LOGIN: ', res);
             localStorage.setItem('token', res.data.token);
             axiosWithAuth()
                 .get(`/parent/${res.data.user.id}/children`)
