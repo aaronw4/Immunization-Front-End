@@ -1,8 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { getParentAction } from '../../actions';
-import { getChildrenAction } from '../../actions';
-import { getImmunizations } from '../../actions';
 import './PatientHome.css';
 
 const PatientHome = props => {
@@ -10,18 +7,18 @@ const PatientHome = props => {
     //console.log('PROPS IMMUNIZATIONS: ', props.childImunizations);
 
     const [active, setActive] = useState(-1);
-
-    // useEffect(() => {
-    //     props.getChildrenAction(props.parentId);
-    // }, []);
     
 
-    const addChild = () => {
+    const addChildButton = () => {
         setTimeout(() => props.history.push('/add-child'), 1000);
     }
 
     const displayVacc = (index) => {
         setActive(index);
+    }
+
+    const permissionButton = () => {
+        props.history.push('/permissions');
     }
 
     return(
@@ -34,7 +31,7 @@ const PatientHome = props => {
                         <div key={patient.id} 
                              onClick={() => displayVacc(index)} >
 
-                            <h1>{patient.firstName}</h1>
+                            <h1>{patient.firstName} {patient.lastName}</h1>
                             {/* {console.log('SECOND')} */}
                             <div className={active === index ? 'Show-Vaccines' : 'Hide-Vaccines'} >
                                 {patient['immunizations'].map(vac => {
@@ -43,7 +40,8 @@ const PatientHome = props => {
                             </div>
                     </div>)
             })}
-            <button onClick={addChild}>Add Child</button>
+            <button onClick={addChildButton}>Add Child</button>
+            <button onClick={permissionButton}>Permissions</button>
         </div>
     )
 }
@@ -59,5 +57,5 @@ const mapStateToProps = state => {
 }
 
 export default 
-connect(mapStateToProps, {getParentAction, getChildrenAction, getImmunizations})
+connect(mapStateToProps, {})
 (PatientHome);

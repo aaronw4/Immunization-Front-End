@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
-import { getParentAction } from "../../actions";
+import { loginAction } from "../../actions";
 import {
   makeStyles,
   withStyles,
@@ -154,7 +154,7 @@ const HOCForm = withFormik({
     //     props.history.push("/user");
     //   });
     //console.log('here1');
-    props.getParentAction(props, values); //Need to await
+    props.loginAction(props, values); //Need to await
   }
 })(Login);
 
@@ -164,7 +164,7 @@ const mapStateToProps = state => ({
 
 const LoginForm = connect(
   mapStateToProps,
-  { getParentAction }
+  { loginAction }
 )(HOCForm);
 
 export default LoginForm;
