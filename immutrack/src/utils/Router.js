@@ -3,7 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import IntroPage from "../components/base/IntroPage";
 import LoginChoose from "../components/login/LoginChoose";
 import LoginForm from "../components/login/Login";
-import PateintHome from '../components/patient/PatientHome';
+import PateintHome from "../components/patient/PatientHome";
+import PatientRegisterForm from "../components/patient/PatientRegister";
 
 const Router = () => {
   return (
@@ -13,7 +14,8 @@ const Router = () => {
         <Route path="/login" component={LoginChoose} />
         <Route path="/parent-login" component={LoginForm} />
         <Route path="/provider-login" component={LoginForm} />
-        <Route path='/patient-home' component={PateintHome} />
+        <Route path="/patient-home" component={PateintHome} />
+        <Route path="/patient-register" component={PatientRegisterForm} />
       </Switch>
     </>
   );
