@@ -76,32 +76,33 @@ const handleChange = event => {
 
 return (
     <div>
-        <Route exact path='/'>
-            <h2>Patient Status</h2>
-            <form className='form'>
-                <input
-                id="name"
-                type="text"
-                name="textfield"
-                placeholder="&#xF002;"
-                value={searchTerm}
-                onChange={handleChange}
-                className='input'
-                />
-            </form>     
-            <PatientCont>
-                {searchResults.map(patient => (            
-                    <PatientButton>
-                        <IndicatorCont><Indicator id={patient.id}/></IndicatorCont>
-                        <p>{patient.firstName} {patient.lastName}</p>
-                        <Link to={`/${patient.id}`}>
-                            <Record>Record</Record>
-                        </Link>
-                    </PatientButton>            
-                ))}
-            </PatientCont>
-         </Route>
-         <Route path='/:id'><SinglePatient/></Route>
+        <h2>Patient Status</h2>
+
+        <form className='form'>
+            <input
+            id="name"
+            type="text"
+            name="textfield"
+            placeholder="&#xF002;"
+            value={searchTerm}
+            onChange={handleChange}
+            className='input'
+            />
+        </form>  
+          
+        <PatientCont>
+            {searchResults.map(patient => (            
+                <PatientButton>
+                    <IndicatorCont><Indicator id={patient.id}/></IndicatorCont>
+                    <p>{patient.firstName} {patient.lastName}</p>
+                    <Link to={`/${patient.id}`}>
+                        <Record>Record</Record>
+                    </Link>
+                </PatientButton>            
+            ))}
+        </PatientCont>
+        
+        <Route path='/:id'><SinglePatient/></Route>
     </div>
 )
 }

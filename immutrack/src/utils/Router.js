@@ -3,15 +3,20 @@ import { Route, Switch } from "react-router-dom";
 import IntroPage from "../components/base/IntroPage";
 import LoginChoose from "../components/login/LoginChoose";
 import LoginForm from "../components/login/Login";
+import Footer from '../components/base/Footer';
+import DoctorHome from '../components/doctor/DoctorHome';
+
 
 const Router = () => {
   return (
     <>
       <Switch>
         <Route exact path="/" component={IntroPage} />
+        <Route path='/' component={Footer}/>
         <Route path="/login" component={LoginChoose} />
         <Route path="/parent-login" component={LoginForm} />
         <Route path="/provider-login" component={LoginForm} />
+        <Route path='/doctor-home' component={DoctorHome} />
       </Switch>
     </>
   );
