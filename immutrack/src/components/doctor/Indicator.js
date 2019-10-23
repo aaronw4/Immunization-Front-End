@@ -48,12 +48,15 @@ useEffect(() => {
     
 }, [props.id])
 
-var dates = immunization.map(date => date.dateCompleted);
+var dates = immunization.map(date => new Date(date.nextImmunizationDate));
 var today = new Date();
-var nextDate = dates.filter(date => today > date);
-var number = dates.indexOf(nextDate);
+var nextDates = dates.filter(date => today >= date);
+var nextDate = nextDates.sort((a, b) => a - b);
+console.log(nextDate)
+var number = dates.indexOf(nextDate[0]);
+console.log(number)
 var permisson = ((immunization || {})[number] || {}).grantPermission;
-console.log(((immunization || {})[0] || {}).grantPermission)
+console.log(permisson)
 
     return(
         <div>
