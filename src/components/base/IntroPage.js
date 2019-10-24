@@ -1,73 +1,66 @@
 import React from "react";
 import styled from "styled-components";
 import introImg from "./introImg.jpg";
-import background from "./introBackground.jpg";
 import { Link } from "react-router-dom";
 
-const IntroPg = styled.div`
-  display: flex;
-`;
-
 const IntroCont = styled.div`
-  max-width: 985px;
-  margin-right: auto;
-  margin-left: auto;
-`;
-
-const IntroBackground = styled.img`
-  height: 93vh;
-  width: 16vw;
-
-  @media (max-width: 800px) {
-    display: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+  width: 60%;
+  margin: 0 auto;
+  padding: 20px;
+  background: #fff;
+  @media (max-width: 959px) {
+    width: 90%;
   }
-`;
-
-const IntroHeader = styled.h2`
-  font-family: Barlow;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 24px;
-  margin-top: 15px;
+  @media (max-width: 599px) {
+    width: 100%;
+  }
 `;
 
 const IntroImgCont = styled.div`
   max-width: 734px;
+  width: 734px;
   max-height: 228px;
-  overflow: hidden;
-  margin: 57px auto 0 auto;
+  height: 228px;
+  margin-bottom: 50px;
+  background-image: url(${introImg});
+  background-size: 734px;
+  background-position-y: -100px;
   border-radius: 200px;
   box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.25);
-
-  @media (max-width: 500px) {
-    width: 333px;
-    height: 150px;
+  @media (max-width: 1230px) {
+    max-width: 500px;
+    max-height: 155px;
+    background-size: 500px;
+    background-position-y: -65px;
   }
-`;
-
-const IntroImg = styled.img`
-  max-width: 734px;
-  margin-top: -100px;
-
-  @media (max-width: 500px) {
-    max-width: 450px;
-    margin-top: -50px;
-    margin-left: -30px;
+  @media (max-width: 550px) {
+    max-width: 400px;
+    max-height: 125px;
+    background-size: 400px;
+    background-position-y: -55px;
+  }
+  @media (max-width: 400px) {
+    max-width: 300px;
+    max-height: 94px;
+    background-size: 300px;
+    background-position-y: -40px;
   }
 `;
 
 const IntroDesc = styled.p`
   font-family: Barlow;
-  font-style: normal;
-  font-weight: normal;
   font-size: 25px;
   line-height: 35px;
   width: 422px;
-  margin: 72px auto 0 auto;
+  padding: 20px;
   text-align: left;
 
-  @media (max-width: 500px) {
+  @media (max-width: 959px) {
     width: 244px;
     font-size: 18px;
     line-height: 25px;
@@ -84,28 +77,20 @@ const IntroButton = styled.button`
   font-size: 15px;
   line-height: 18px;
   padding: 16px 73px;
-  margin-top: 56px;
 `;
 
 export default function IntroPage() {
   return (
-    <IntroPg>
-      <IntroBackground src={background} />
-      <IntroCont>
-        <IntroHeader>ImmuTrack</IntroHeader>
-        <IntroImgCont>
-          <IntroImg src={introImg} />
-        </IntroImgCont>
-        <IntroDesc>
-          ImmuTrack gives parents the ability to track their children’s
-          immunization records. Talk to your doctor to receive a code that will
-          connect your account to your preferred office.
-        </IntroDesc>
-        <Link to="/login">
-          <IntroButton>SIGN UP</IntroButton>
-        </Link>
-      </IntroCont>
-      <IntroBackground src={background} />
-    </IntroPg>
+    <IntroCont>
+      <IntroImgCont />
+      <IntroDesc>
+        ImmuTrack gives parents the ability to track their children’s
+        immunization records. Talk to your doctor to receive a code that will
+        connect your account to your preferred office.
+      </IntroDesc>
+      <Link to="/patient-register">
+        <IntroButton>SIGN UP</IntroButton>
+      </Link>
+    </IntroCont>
   );
 }
