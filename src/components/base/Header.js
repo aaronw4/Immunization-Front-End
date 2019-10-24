@@ -9,11 +9,16 @@ const useStyles = makeStyles({
   root: {
     width: "100%",
     margin: "0 auto",
-    padding: theme.spacing(2),
+    // padding: theme.spacing(2),
     background: "#fff",
+    fontFamily: theme.typography.fontFamily,
+    lineHeight: "0",
     textAlign: "center",
+    [theme.breakpoints.up("sm")]: {
+      width: "90%"
+    },
     [theme.breakpoints.up("md")]: {
-      width: "80%"
+      width: "60%"
     }
   }
 });
@@ -41,18 +46,18 @@ const Header = ({ location, history }) => {
         alignItems="center"
         justify="center"
       >
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <ArrowBack
             onClick={history.goBack}
             style={{ fontSize: "30px", color: "#000" }}
           />
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={6}>
           <Typography component="header" variant="h5">
             ImmuTrack
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <LogoutButton onClick={logout}>Sign Out</LogoutButton>
         </Grid>
       </Grid>
@@ -66,13 +71,13 @@ const Header = ({ location, history }) => {
         alignItems="center"
         justify="center"
       >
-        <Grid item xs={2}></Grid>
-        <Grid item xs={8}>
+        <Grid item xs={3}></Grid>
+        <Grid item xs={6}>
           <Typography component="header" variant="h5">
             ImmuTrack
           </Typography>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={3}>
           <LogoutButton onClick={login}>Sign In</LogoutButton>
         </Grid>
       </Grid>
@@ -85,18 +90,18 @@ const Header = ({ location, history }) => {
       alignItems="center"
       justify="center"
     >
-      <Grid item xs={2}>
+      <Grid item xs={3}>
         <ArrowBack
           onClick={history.goBack}
           style={{ fontSize: "30px", color: "#000" }}
         />
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={6}>
         <Typography component="header" variant="h5">
           ImmuTrack
         </Typography>
       </Grid>
-      <Grid item xs={2}></Grid>
+      <Grid item xs={3}></Grid>
     </Grid>
   );
 };
