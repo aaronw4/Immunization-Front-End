@@ -1,5 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
+import { register } from "../../actions/register";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { Grid, Paper } from "@material-ui/core";
@@ -54,7 +55,7 @@ const RegisterForm = ({ errors, touched, values }) => {
           <Field
             className={classes.inputs}
             type="text"
-            name="phone"
+            name="phoneNumber"
             autoComplete="false"
           />
           <LoginButton variant="contained" type="submit">
@@ -71,38 +72,46 @@ const RegisterForm = ({ errors, touched, values }) => {
           {touched.lastName && errors.lastName && <p>{errors.lastName}</p>}
           {touched.email && errors.email && <p>{errors.email}</p>}
           {touched.password && errors.password && <p>{errors.password}</p>}
-          {touched.phone && errors.phone && <p>{errors.phone}</p>}
+          {touched.phoneNumber && errors.phoneNumber && (
+            <p>{errors.phoneNumber}</p>
+          )}
         </Grid>
       </Form>
     </Paper>
   );
 };
 
+const phoneValidate = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const FormikWrap = withFormik({
-  mapPropsToValues({ firstName, lastName, email, password, phone }) {
+  mapPropsToValues({ firstName, lastName, phoneNumber, email, password }) {
     return {
       firstName: firstName || "",
       lastName: lastName || "",
+      phoneNumber: phoneNumber || "",
       email: email || "",
-      password: password || "",
-      phone: phone || ""
+      password: password || ""
     };
   },
   validationSchema: Yup.object().shape({
     firstName: Yup.string().required("Please enter your name"),
     lastName: Yup.string().required("Please enter your name"),
-    email: Yup.string().required("Email is required"),
-    password: Yup.string().required("Password is required"),
-    phone: Yup.string().required("Please enter your phone number")
+    phoneNumber: Yup.string()
+      .required("Please enter your phone number")
+      .matches(phoneValidate, "Phone number is not valid"),
+    email: Yup.string()
+      .required("Email is required")
+      .email("Email is not valid"),
+    password: Yup.string().required("Password is required")
   }),
-  handleSubmit(values, { props }) {}
+  handleSubmit(values, { props, resetForm }) {
+    props.register(props, resetForm, values);
+  }
 })(RegisterForm);
 
-const mapStateToProps = state => ({});
-
 const PatientRegisterForm = connect(
-  mapStateToProps,
-  {}
+  null,
+  { register }
 )(FormikWrap);
 
 export default PatientRegisterForm;
