@@ -7,11 +7,11 @@ const IntroCont = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-evenly;
   height: 90vh;
   width: 60%;
   margin: 0 auto;
-  padding: 20px;
+  /* padding: 20px; */
   background: #fff;
   @media (max-width: 959px) {
     width: 90%;
@@ -26,29 +26,30 @@ const IntroImgCont = styled.div`
   width: 734px;
   max-height: 228px;
   height: 228px;
-  margin-bottom: 50px;
   background-image: url(${introImg});
   background-size: 734px;
   background-position-y: -100px;
+  background-repeat: no-repeat;
   border-radius: 200px;
   box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.25);
   @media (max-width: 1230px) {
-    max-width: 500px;
+    max-width: 525px;
     max-height: 155px;
-    background-size: 500px;
+    background-size: 100%;
     background-position-y: -65px;
   }
   @media (max-width: 550px) {
-    max-width: 400px;
-    max-height: 125px;
-    background-size: 400px;
+    max-width: 90%;
+    max-height: 150px;
     background-position-y: -55px;
   }
-  @media (max-width: 400px) {
-    max-width: 300px;
-    max-height: 94px;
-    background-size: 300px;
-    background-position-y: -40px;
+  @media (max-width: 480px) {
+    max-height: 125px;
+    background-position-y: -35px;
+  }
+  @media (max-width: 370px) {
+    max-height: 125px;
+    background-position-y: -15px;
   }
 `;
 
@@ -60,8 +61,8 @@ const IntroDesc = styled.p`
   padding: 20px;
   text-align: left;
 
-  @media (max-width: 959px) {
-    width: 244px;
+  @media (max-width: 500px) {
+    width: 70%;
     font-size: 18px;
     line-height: 25px;
   }
