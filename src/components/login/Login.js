@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Form, Field, withFormik } from "formik";
 import * as Yup from "yup";
 import { loginAction } from "../../actions";
-import { Grid, Paper } from "@material-ui/core";
+import { Grid, Box } from "@material-ui/core";
 import { useStyles } from "../../styles/muiFormStyles";
 import { LoginButton } from "../../styles/muiStyledButtons";
 
@@ -11,7 +11,7 @@ const Login = ({ errors, touched, values, history }) => {
   const classes = useStyles();
 
   return (
-    <Paper className={classes.root} elevation={0}>
+    <Box className={classes.root} elevation={0}>
       <Form className={classes.container}>
         <Grid container direction="column" alignItems="center" justify="center">
           <div className={classes.labels}>
@@ -48,7 +48,7 @@ const Login = ({ errors, touched, values, history }) => {
           {touched.password && errors.password && <p>{errors.password}</p>}
         </Grid>
       </Form>
-    </Paper>
+    </Box>
   );
 };
 
@@ -65,7 +65,7 @@ const HOCForm = withFormik({
       .required("Email is required"),
     password: Yup.string().required("Password is required")
   }),
-     handleSubmit(values, { resetForm, props }) {
+  handleSubmit(values, { resetForm, props }) {
     // axiosWithAuth()
     //   .post(`/auth/login/${props.user}`, values)
     //   .then(res => {
