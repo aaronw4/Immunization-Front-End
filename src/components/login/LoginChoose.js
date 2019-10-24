@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { loginParent, loginProvider } from "../../actions/loginType";
-import { Grid, Paper, Typography } from "@material-ui/core";
+import { Grid, Box, Typography } from "@material-ui/core";
 import { useStyles } from "../../styles/muiFormStyles";
 import { PatientButton, DoctorButton } from "../../styles/muiStyledButtons";
 
@@ -21,7 +21,7 @@ const LoginChoose = ({ history, loginParent, loginProvider }) => {
   };
 
   return (
-    <Paper className={classes.root} elevation={0}>
+    <Box className={classes.root}>
       <Grid
         className={classes.container}
         container
@@ -39,7 +39,7 @@ const LoginChoose = ({ history, loginParent, loginProvider }) => {
           Doctor
         </DoctorButton>
       </Grid>
-    </Paper>
+    </Box>
   );
 };
 
