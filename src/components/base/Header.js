@@ -9,8 +9,8 @@ const useStyles = makeStyles({
   root: {
     width: "100%",
     margin: "0 auto",
-    // padding: theme.spacing(2),
-    background: "#fff",
+    padding: theme.spacing(2),
+    background: "#f2f2f2",
     fontFamily: theme.typography.fontFamily,
     lineHeight: "0",
     textAlign: "center",
