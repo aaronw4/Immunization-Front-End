@@ -95,10 +95,11 @@ export default function SinglePatient() {
                 <div><Indicator id={patient.id}/></div>
             </Header>            
             <PatientCont>
-                {immunization.map(shot => (            
-                    <PatientButton key={shot.id}> 
-                        {shot.immunizationCompleted === true ? <PatientString><div>{shot.vaccine}</div> <div> completed on {shot.date.slice(0,10)}</div></PatientString> : <PatientString><div>{shot.vaccine}</div> due {shot.nextImmunizationDate.slice(0,10)}</PatientString>}
-                    </PatientButton>            
+                {immunization.map(shot => (
+                    shot.immunizationCompleted === true ? null : <PatientButton key={shot.id}><PatientString><div>{shot.vaccine}</div> due {shot.nextImmunizationDate.slice(0,10)}</PatientString></PatientButton>
+                ))}
+                {immunization.map(shot => (  
+                    shot.immunizationCompleted === true ? <PatientButton key={shot.id}><PatientString><div>{shot.vaccine}</div> <div> completed on {shot.date.slice(0,10)}</div></PatientString></PatientButton> : null
                 ))}
             </PatientCont>
             <Link to='/UpdateImmune'><Button>Add Record</Button></Link>
