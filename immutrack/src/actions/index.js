@@ -26,8 +26,8 @@ export const getImmunizations = (childArr, history) => dispatch => {
             axiosWithAuth().get(`/child/${child.id}/immunization`)
             .then(res => {
                     dispatch({type: SET_IMMUNIZATION_ACTION, payload: {immuneObj: res.data, index: index}});
-                    if(index === childArr.length - 1)
-                        history.push(`/patient-home`);
+                    // if(index === childArr.length - 1)
+                    history.push(`/patient-home`);
                 })
             .catch(err => console.log('ERROR IMMUNIZATION REQ: ', err));
         });
@@ -59,27 +59,11 @@ export const addChildAction = (parentId, childObj, props) => dispatch => {
 }
 
 export const updateChildAction = (vacId, vacObj, props, userId) => dispatch => {
-
-    const vaccineObjectReq = {
-                              vaccine: "Editedd",
-                              immunizationCompleted: false,
-                              date: vacObj.date,
-                              location: vacObj.location,
-                              grantPermission: false,
-                              nextImmunizationDate: vacObj.nextImmunizationDate || ''
-                            };
                             
-    const vaccineObjectText = {
-                                vaccine: "Editedd",
-                                date: "11/1k1ff555/17",
-                                location: "XXX Medical City",
-                                immunizationCompleted: false,
-                                grantPermission: true
-                            }
-    console.log('VAC OBJ: ', vaccineObjectReq);
-    console.log('VAC OBJ TEXT: ', vaccineObjectText);
+    // console.log('VAC OBJ: ', vaccineObjectReq);
+    // console.log('VAC OBJ TEXT: ', vaccineObjectText);
     axiosWithAuth()
-        .put(`/child/immunization/${vacId}`, vaccineObjectReq)
+        .put(`/child/immunization/${vacId}`, vacObj)
         .then(res => {
             console.log('Success Put: ', res);
             getChildrenAction(userId, props)(dispatch);

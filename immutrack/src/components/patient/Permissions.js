@@ -5,10 +5,7 @@ import { updateChildAction } from '../../actions';
 const Permissions = props => {
     const [permission, setPermission] = useState({vaccine: 'Measles', 
                                                   location: 'Unknown',
-                                                  grantPermission: true,
-                                                  immunizationCompleted: false,
-                                                  date: 'asdfsafdsadf',
-                                                  nextImmunizationDate: 'asdfasdf'})
+                                                  grantPermission: false});
     const [foundChild, setFoundChild] = useState(true);
 
     const typesofVaccines = [
@@ -21,20 +18,25 @@ const Permissions = props => {
         "Polio",
         "Rabies"
       ];
-
+    
     const handleChange = e => {
         setPermission({...permission, [e.target.name]: e.target.value});
     }
 
     const handleSubmit = e => {
+        let completeImmunizationValues = {};
         e.preventDefault();
         props.childList.forEach(child => {
-            console.log(`list: ${child.firstName} ${child.lastName} === input: ${permission.childsName}`)
+            // console.log(`list: ${child.firstName} ${child.lastName} === input: ${nonImportant.childsName}`)
             if(`${child.firstName} ${child.lastName}` === permission.childsName){
                 child.immunizations.forEach(vac => {
-                    console.log(`VaccineList: ${vac.vaccine} === input: ${permission.vaccine}`)
+                    // console.log(`VaccineList: ${vac.vaccine} === input: ${permission.vaccine}`)
                     if(vac.vaccine === permission.vaccine){
-                        props.updateChildAction(vac.id, permission, props, props.userId);
+                        completeImmunizationValues = {...vac, 
+                                                      vaccine: permission.vaccine,
+                                                      location: permission.location,
+                                                      grantPermission: permission.grantPermission}
+                        props.updateChildAction(vac.id, completeImmunizationValues, props, props.userId);
                     }
                 })
             }
@@ -50,8 +52,8 @@ const Permissions = props => {
                 onChange={handleChange}/>,
             grant, 
                 <input type='text' 
-                    name='doctorsOffice' 
-                    value={permission.doctorsOffice}
+                    name='location' 
+                    value={permission.location}
                     onChange={handleChange}/>,
             Permission to update, 
                 <input type='text' 

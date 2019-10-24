@@ -6,6 +6,13 @@
     display: none;
 }
 
+.Space-between-Table{
+    padding-right: 3%;
+}
+
 .Patient-Container{
-    display: inherit;
+    background: #F2F2F2;
+    width: 80%;
+    margin: 0 auto;
+    height: 100vh;
 }
