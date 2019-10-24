@@ -23,14 +23,6 @@ const PatientButton = styled.div`
     align-items: center;
 `;
 
-const IndicatorCont = styled.div`
-    border-radius: 100%;
-    width: 24px;
-    height: 24px;
-    background: #A1A1A1;
-    margin-left: 10px;
-`;
-
 const Record = styled.button`
     background: #C67474;
     border: 1px solid #924646;
@@ -93,7 +85,7 @@ return (
         <PatientCont>
             {searchResults.map(patient => (            
                 <PatientButton>
-                    <IndicatorCont><Indicator id={patient.id}/></IndicatorCont>
+                    <Indicator id={patient.id}/>
                     <p>{patient.firstName} {patient.lastName}</p>
                     <Link to={`/${patient.id}`}>
                         <Record>Record</Record>

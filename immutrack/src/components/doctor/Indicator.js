@@ -29,6 +29,14 @@ padding-top: 5px;
 background: linear-gradient(0deg, #F3F3F3, #F3F3F3), #F3F3F3;
 `;
 
+const IndicatorCont = styled.div`
+    border-radius: 100%;
+    width: 24px;
+    height: 24px;
+    background: #A1A1A1;
+    margin-left: 10px;
+`;
+
 export default function Indicator(props) {
     const [immunization, setImmunization] = useState([]);
 
@@ -59,10 +67,10 @@ var permisson = ((immunization || {})[number] || {}).grantPermission;
 console.log(permisson)
 
     return(
-        <div>
+        <IndicatorCont>
             {nextDate.length === 0 ? <White/> : null}
             {nextDate.length !== 0 && permisson === false ? <Yellow/> : null}
             {nextDate.length !== 0 && permisson === true ? <Green/> : null}
-        </div>
+        </IndicatorCont>
     )
 }
