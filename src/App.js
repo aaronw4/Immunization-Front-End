@@ -1,8 +1,6 @@
 import React from "react";
 import "./App.css";
-import PatientHome from "./components/patient/PatientHome";
 import Router from "./utils/Router";
-
 import Header from "./components/base/Header";
 import Footer from "./components/base/Footer";
 
@@ -29,8 +27,8 @@ function App() {
               -> <Update Immune />
             <Footer />
         */}
-      <Footer />
       <Router />
+      <Footer />
     </div>
   );
 }
