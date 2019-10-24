@@ -15,6 +15,7 @@ const Container = styled.div`
   background: #7e7e7e;
   font-family: "Barlow";
   font-size: 15px;
+  z-index: 100;
   @media (max-width: 599px) {
     height: 10vh;
   }
