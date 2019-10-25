@@ -28,6 +28,11 @@ const Header = ({ location, history }) => {
     history.push("/");
   };
 
+  const login = e => {
+    e.preventDefault();
+    history.push("/login");
+  };
+
   if (token) {
     return (
       <Grid
@@ -61,9 +66,15 @@ const Header = ({ location, history }) => {
         alignItems="center"
         justify="center"
       >
-        <Typography component="header" variant="h5">
-          ImmuTrack
-        </Typography>
+        <Grid item xs={2}></Grid>
+        <Grid item xs={8}>
+          <Typography component="header" variant="h5">
+            ImmuTrack
+          </Typography>
+        </Grid>
+        <Grid item xs={2}>
+          <LogoutButton onClick={login}>Sign In</LogoutButton>
+        </Grid>
       </Grid>
     );
   }

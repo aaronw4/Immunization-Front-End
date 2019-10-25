@@ -1,0 +1,11 @@
+.Show-Vaccines{
+    display: block;
+}
+
+.Hide-Vaccines{
+    display: none;
+}
+
+.Patient-Container{
+    display: inherit;
+}

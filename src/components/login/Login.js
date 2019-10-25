@@ -7,7 +7,7 @@ import { Grid, Paper } from "@material-ui/core";
 import { useStyles } from "../../styles/muiFormStyles";
 import { LoginButton } from "../../styles/muiStyledButtons";
 
-const Login = ({ errors, touched, values }) => {
+const Login = ({ errors, touched, values, history }) => {
   const classes = useStyles();
 
   return (
@@ -65,8 +65,23 @@ const HOCForm = withFormik({
       .required("Email is required"),
     password: Yup.string().required("Password is required")
   }),
-  handleSubmit(values, { resetForm, props }) {
-    props.loginAction(props.user, values);
+     handleSubmit(values, { resetForm, props }) {
+    // axiosWithAuth()
+    //   .post(`/auth/login/${props.user}`, values)
+    //   .then(res => {
+    //     console.log(res);
+    //      localStorage.setItem("token", res.data.token);
+    //     props.user === "parents"
+    //       ? props.history.push("/")
+    //       : props.history.push("/login");
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     resetForm();
+    //     props.history.push("/user");
+    //   });
+    //console.log('here1');
+    props.loginAction(props, values); //Need to await
   }
 })(Login);
 

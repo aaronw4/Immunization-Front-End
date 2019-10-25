@@ -1,8 +1,17 @@
 import { SET_IMMUNIZATION_ACTION } from '../actions';
 import { SET_CHILD_ACTION } from '../actions';
+import { SET_USER_ACTION } from '../actions';
 
 const initialState = {
     childList: [
+        {
+            firstName: 'Brandon',
+            immunizations: [
+                {
+                    vaccine: 'stuff'
+                }
+            ]
+        }
         /* 
             {
                 name: [type text]
@@ -18,7 +27,9 @@ const initialState = {
                 ]
             }
         */
-    ]
+    ],
+    display: false,
+    userId: -1
 }
 
 export const patientReducer = (state = initialState, action) => {
@@ -26,13 +37,23 @@ export const patientReducer = (state = initialState, action) => {
     switch(action.type){
         case SET_CHILD_ACTION:
             return {
-                childList: action.payload
+                ...state,
+                childList: action.payload,
+                display: false
             }
         case SET_IMMUNIZATION_ACTION:
-            let tempArr = state.childList;
-            tempArr[action.payload.index].immunizations = action.payload.immuneObj;
+            let tempArr = [...state.childList];
+            tempArr[action.payload.index].immunizations = action.payload.immuneObj || {Empty: 0};
             return {
-                childList: tempArr
+               ...state,
+               childList: [...tempArr],
+               display: true
+            }
+        case SET_USER_ACTION:
+            return {
+                ...state,
+                userId: action.payload,
+                display: false
             }
         default:
             return state;

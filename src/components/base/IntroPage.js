@@ -90,18 +90,24 @@ const IntroButton = styled.button`
 `;
 
 export default function IntroPage() {
-
-  return(
+  return (
     <IntroPg>
-      <IntroBackground src={background}/>
+      <IntroBackground src={background} />
       <IntroCont>
-          <IntroHeader>ImmuTrack</IntroHeader>
-          <IntroImgCont><IntroImg src={introImg}/></IntroImgCont>
-          <IntroDesc>ImmuTrack gives parents the ability to track their children’s immunization records. Talk to your doctor to receive a code that will connect your account to your preferred office.</IntroDesc>
-          <Link to="/login"><IntroButton>SIGN UP</IntroButton></Link>
+        <IntroHeader>ImmuTrack</IntroHeader>
+        <IntroImgCont>
+          <IntroImg src={introImg} />
+        </IntroImgCont>
+        <IntroDesc>
+          ImmuTrack gives parents the ability to track their children’s
+          immunization records. Talk to your doctor to receive a code that will
+          connect your account to your preferred office.
+        </IntroDesc>
+        <Link to="/login">
+          <IntroButton>SIGN UP</IntroButton>
+        </Link>
       </IntroCont>
-      <IntroBackground src={background}/>
+      <IntroBackground src={background} />
     </IntroPg>
-  )
+  );
 }
-
