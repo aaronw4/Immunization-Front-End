@@ -8,7 +8,11 @@ import { connect } from 'react-redux';
 
 const DoctorHomeCont = styled.div`
     text-align: center;
-    margin-bottom: 50px;
+    padding: 50px 0;
+    background-color: white;
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
 `;
 
 const PatientCont = styled.div`
