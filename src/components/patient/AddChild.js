@@ -53,7 +53,7 @@ const AddChild = props => {
             <input
               type="text"
               name="firstName"
-              placeholder="First Name"
+              // placeholder="First Name"
               onChange={handleInput}
               value={child.firstName}
               className={classes.inputs}
@@ -64,7 +64,7 @@ const AddChild = props => {
             <input
               type="text"
               name="lastName"
-              placeholder="Last Name"
+              // placeholder="Last Name"
               onChange={handleInput}
               value={child.lastName}
               className={classes.inputs}
@@ -75,7 +75,7 @@ const AddChild = props => {
             <input
               type="text"
               name="dateOfBirth"
-              placeholder="Date Of Birth"
+              // placeholder="Date Of Birth"
               onChange={handleInput}
               value={child.dateOfBirth}
               className={classes.inputs}
@@ -86,7 +86,7 @@ const AddChild = props => {
             <input
               type="text"
               name="socialSecuirtyNumber"
-              placeholder="Social Security Number"
+              // placeholder="Social Security Number"
               onChange={handleInput}
               value={child.socialSecuirtyNumber}
               className={classes.inputs}
