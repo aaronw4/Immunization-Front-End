@@ -24,14 +24,6 @@ const PatientButton = styled.div`
   align-items: center;
 `;
 
-const IndicatorCont = styled.div`
-  border-radius: 100%;
-  width: 24px;
-  height: 24px;
-  background: #a1a1a1;
-  margin-left: 10px;
-`;
-
 const Record = styled.button`
   background: #c67474;
   border: 1px solid #924646;

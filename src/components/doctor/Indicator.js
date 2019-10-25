@@ -29,6 +29,14 @@ const White = styled.button`
   background: linear-gradient(0deg, #f3f3f3, #f3f3f3), #f3f3f3;
 `;
 
+const IndicatorCont = styled.div`
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  background: #a1a1a1;
+  margin-left: 10px;
+`;
+
 export default function Indicator({patient}) {
   const [immunization, setImmunization] = useState(patient.immunizations);
 
@@ -53,17 +61,14 @@ export default function Indicator({patient}) {
   var today = new Date();
   var nextDates = dates.filter(date => today >= date);
   var nextDate = nextDates.sort((a, b) => a - b);
-  console.log(nextDate);
   var number = dates.indexOf(nextDate[0]);
-  console.log(number);
   var permisson = ((immunization || {})[number] || {}).grantPermission;
-  console.log(permisson);
-
-  return (
-    <div>
+  
+  return (    
+    <IndicatorCont>
       {nextDate.length === 0 ? <White /> : null}
       {nextDate.length !== 0 && permisson === false ? <Yellow /> : null}
       {nextDate.length !== 0 && permisson === true ? <Green /> : null}
-    </div>
+    </IndicatorCont>  
   );
 }
