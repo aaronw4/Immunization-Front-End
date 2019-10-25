@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import {axiosWithAuth} from './axios';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import Indicator from './Indicator';
 import styled from 'styled-components';
 import {Link} from 'react-router-dom';

@@ -34,6 +34,14 @@ const Record = styled.button`
   margin-right: 10px;
 `;
 
+const IndicatorCont = styled.div`
+  border-radius: 100%;
+  width: 24px;
+  height: 24px;
+  background: #a1a1a1;
+  margin-left: 10px;
+`;
+
 function DoctorHome({patients, display}) {
   //const [patients, setPatients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -87,20 +95,24 @@ function DoctorHome({patients, display}) {
       </form>
 
       <PatientCont>
-        {display && searchResults.map(patient => (
-          <PatientButton>
-            <IndicatorCont>
-              {patient.immunizations ?
-                <Indicator patient={patient} /> : null}
-            </IndicatorCont>
-            <p>
-              {patient.firstName} {patient.lastName}
-            </p>
-            <Link to={`/${patient.id}`}>
-              <Record>Record</Record>
-            </Link>
-          </PatientButton>
-        ))}
+        {display && searchResults.map(patient => {
+            console.log('PATIENT: ', patient)
+            return (
+            <PatientButton>
+              <IndicatorCont>
+                 {patient.immunizations ?
+                  <Indicator patient={patient} /> : null}
+              </IndicatorCont>
+              <p>
+                {patient.firstName} {patient.lastName}
+              </p>
+              <Link to={`/${patient.id}`}>
+                <Record>Record</Record>
+              </Link>
+            </PatientButton>
+          )
+        })}
+          
       </PatientCont>
 
       <Route path="/:id">

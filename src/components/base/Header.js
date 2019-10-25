@@ -34,6 +34,7 @@ const Header = ({ location, history }) => {
   };
 
   if (token) {
+    console.log('HISTORY: ', history);
     return (
       <Grid
         className={classes.root}
@@ -43,7 +44,7 @@ const Header = ({ location, history }) => {
       >
         <Grid item xs={2}>
           <ArrowBack
-            onClick={history.goBack}
+            onClick={() => history.goBack()}
             style={{ fontSize: "30px", color: "#000" }}
           />
         </Grid>

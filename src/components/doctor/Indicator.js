@@ -37,8 +37,9 @@ const IndicatorCont = styled.div`
   margin-left: 10px;
 `;
 
-export default function Indicator({patient}) {
-  const [immunization, setImmunization] = useState(patient.immunizations);
+export default function Indicator(props) {
+  // console.log('INDICATOR  _PATIENT: ', props.patient);
+  const [immunization, setImmunization] = useState(props.patient.immunizations);
 
   // useEffect(() => {
   //   const getShotInfo = () => {
