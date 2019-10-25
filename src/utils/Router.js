@@ -1,29 +1,36 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import { PrivateRoute } from "./PrivateRoute";
+
 import IntroPage from "../components/base/IntroPage";
+import PatientRegisterForm from "../components/patient/PatientRegister";
 import LoginChoose from "../components/login/LoginChoose";
 import LoginForm from "../components/login/Login";
-import Footer from '../components/base/Footer';
-import DoctorHome from '../components/doctor/DoctorHome';
-import PateintHome from '../components/patient/PatientHome';
-import AddChild from '../components/patient/AddChild';
-import PatientRegisterForm from "../components/patient/PatientRegister";
-import Permissions from '../components/patient/Permissions';
+
+import DoctorHome from "../components/doctor/DoctorHome";
+import SinglePatient from "../components/doctor/SinglePatient";
+
+import PatientHome from "../components/patient/PatientHome";
+import AddChild from "../components/patient/AddChild";
+import Permissions from "../components/patient/Permissions";
+// import UpdateImmune from '../components/patient/UpdateImmune'
 
 const Router = () => {
   return (
     <>
       <Switch>
         <Route exact path="/" component={IntroPage} />
-        {/* <Route path='/' component={Footer}/> */}
+        <Route path="/patient-register" component={PatientRegisterForm} />
         <Route path="/login" component={LoginChoose} />
         <Route path="/parent-login" component={LoginForm} />
         <Route path="/provider-login" component={LoginForm} />
-        <Route path='/doctor-home' component={DoctorHome} />
-        <Route path='/patient-home' component={PateintHome} />
-        <Route path='/add-child' component={AddChild} />
-        <Route path="/patient-register" component={PatientRegisterForm} />
-        <Route path='/permissions' component={Permissions} />
+        {/* Private Routes */}
+        <PrivateRoute path="/doctor-home" component={DoctorHome} />
+        <PrivateRoute path="/patient" component={SinglePatient} />
+        <PrivateRoute path="/patient-home" component={PatientHome} />
+        <PrivateRoute path="/add-child" component={AddChild} />
+        <PrivateRoute path="/permissions" component={Permissions} />
+        {/* <PrivateRoute path='/update' component={UpdateImmune}/> */}
       </Switch>
     </>
   );
