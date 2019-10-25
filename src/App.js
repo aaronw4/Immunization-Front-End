@@ -28,9 +28,9 @@ function App() {
               -> <Single Patient />
               -> <Update Immune />
             <Footer />
-        */}
-      <Footer />
+        */}      
       <Router />
+      <Footer />
     </div>
   );
 }
