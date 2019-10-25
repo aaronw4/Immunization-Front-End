@@ -3,15 +3,18 @@ import { theme } from "./theme";
 
 export const useStyles = makeStyles({
   root: {
-    height: "100vh",
+    height: "90vh",
     width: "100%",
     margin: "0 auto",
-    paddingTop: theme.spacing(5),
-    background: "#fff",
+    padding: theme.spacing(5),
+    background: "#f2f2f2",
     fontFamily: theme.typography.fontFamily,
     fontSize: "15px",
+    [theme.breakpoints.up("sm")]: {
+      width: "90%"
+    },
     [theme.breakpoints.up("md")]: {
-      width: "80%"
+      width: "60%"
     }
   },
   container: {
