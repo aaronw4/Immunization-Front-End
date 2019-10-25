@@ -12,7 +12,7 @@ const IntroCont = styled.div`
   width: 60%;
   margin: 0 auto;
   /* padding: 20px; */
-  background: #fff;
+  background: #f2f2f2;
   @media (max-width: 959px) {
     width: 90%;
   }
