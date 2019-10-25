@@ -2,15 +2,11 @@ import React from "react";
 import styled from 'styled-components';
 
 const FooterCont = styled.div`
-    position: absolute;
-    bottom: 0;
-    width: 99vw;
     height: 75px;
-    margin_left: -1%
     background-color: #7E7E7E;
 
-    @media (max-width: 500px) {
-        margin-left: -2%;
+    @media (max-width: 1024px) { 
+        margin-top: 50px;
     }
 `;
 
