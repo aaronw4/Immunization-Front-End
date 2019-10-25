@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {axiosWithAuth} from './axios';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import styled from 'styled-components';
 
 const Green = styled.button`

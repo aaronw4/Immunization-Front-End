@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {axiosWithAuth} from './axios';
+import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import {Link, Route} from 'react-router-dom';
 import styled from 'styled-components';
 import Indicator from './Indicator';
@@ -97,35 +97,35 @@ const handleChange = event => {
   //       />
   //     </form>
 
-      <PatientCont>
-        {display && searchResults.map(patient => {
-            console.log('PATIENT: ', patient)
-            return (
-            <PatientButton>
-              <IndicatorCont>
-                 {patient.immunizations ?
-                  <Indicator patient={patient} /> : null}
-              </IndicatorCont>
-              <p>
-                {patient.firstName} {patient.lastName}
-              </p>
-              <Link to={`/${patient.id}`}>
-                <Record>Record</Record>
-              </Link>
-            </PatientButton>
-          )
-        })}
+  //     <PatientCont>
+  //       {display && searchResults.map(patient => {
+  //           console.log('PATIENT: ', patient)
+  //           return (
+  //           <PatientButton>
+  //             <IndicatorCont>
+  //                {patient.immunizations ?
+  //                 <Indicator patient={patient} /> : null}
+  //             </IndicatorCont>
+  //             <p>
+  //               {patient.firstName} {patient.lastName}
+  //             </p>
+  //             <Link to={`/${patient.id}`}>
+  //               <Record>Record</Record>
+  //             </Link>
+  //           </PatientButton>
+  //         )
+  //       })}
           
-      </PatientCont>
+  //     </PatientCont>
 
-  //     <Route path="/:id">
-  //       {/* <SinglePatient /> */}
-  //     </Route>
-  //   </div>
-  // );
+  // //     <Route path="/:id">
+  // //       {/* <SinglePatient /> */}
+  // //     </Route>
+  // //   </div>
+  // // );
 return (
     <DoctorHomeCont>
-        <Route exact path='/'>
+        {/* <Route exact path='/'> */}
             <h2>Patient Status</h2>
             <form className='form'>
                 <input
@@ -154,7 +154,7 @@ return (
               </PatientButton>
             ))}
             </PatientCont>
-        </Route>
+        {/* </Route> */}
         {/* <Route path='/:id'><SinglePatient/></Route> */}
     </DoctorHomeCont>
 )
