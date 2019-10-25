@@ -1,30 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { loginParent, loginProvider } from "../../actions/loginType";
-import { makeStyles, Grid, Paper, Typography } from "@material-ui/core";
+import { Grid, Paper, Typography } from "@material-ui/core";
+import { useStyles } from "../../styles/muiFormStyles";
 import { PatientButton, DoctorButton } from "../../styles/muiStyledButtons";
-import { theme } from "../../styles/theme";
-
-const useStyles = makeStyles({
-  root: {
-    height: "100vh",
-    width: "100%",
-    margin: "0 auto",
-    paddingTop: theme.spacing(5),
-    background: "#fff",
-    [theme.breakpoints.up("md")]: {
-      width: "80%"
-    }
-  },
-  container: {
-    margin: "0 auto",
-    [theme.breakpoints.up("md")]: {
-      padding: theme.spacing(5),
-      width: "500px",
-      background: "#C5C5C5"
-    }
-  }
-});
 
 const LoginChoose = ({ history, loginParent, loginProvider }) => {
   const classes = useStyles();
