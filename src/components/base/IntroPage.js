@@ -1,90 +1,92 @@
 import React from "react";
-import styled from "styled-components";
-import introImg from "./introImg.jpg";
-import background from "./introBackground.jpg";
+import styled from 'styled-components';
+import introImg from './introImg.jpg';
+import background from './introBackground.jpg'
 import { Link } from "react-router-dom";
 
 const IntroPg = styled.div`
-  display: flex;
+    display:flex;
+    text-align: center;
+    background-color: white;
 `;
 
 const IntroCont = styled.div`
-  max-width: 985px;
-  margin-right: auto;
-  margin-left: auto;
+    max-width: 985px;
+    margin-right: auto;
+    margin-left: auto;
 `;
 
 const IntroBackground = styled.img`
-  height: 93vh;
-  width: 16vw;
+    height: 93vh;
+    width: 16vw;
 
-  @media (max-width: 800px) {
-    display: none;
-  }
+    @media (max-width: 1024px) {
+        display: none;
+    }
 `;
 
 const IntroHeader = styled.h2`
-  font-family: Barlow;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 24px;
-  margin-top: 15px;
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 24px;
+    margin-top: 20px;
 `;
 
 const IntroImgCont = styled.div`
-  max-width: 734px;
-  max-height: 228px;
-  overflow: hidden;
-  margin: 57px auto 0 auto;
-  border-radius: 200px;
-  box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.25);
-
-  @media (max-width: 500px) {
-    width: 333px;
-    height: 150px;
-  }
+    max-width: 734px;
+    max-height: 228px;
+    overflow: hidden;
+    margin: 57px auto 0 auto;
+    border-radius: 200px;
+    box-shadow: inset 0px 4px 15px rgba(0, 0, 0, 0.25);
+    
+    @media (max-width: 500px) {
+        width: 333px;
+        height: 150px;
+    };
 `;
 
 const IntroImg = styled.img`
-  max-width: 734px;
-  margin-top: -100px;
+    max-width: 734px;
+    margin-top: -100px;    
 
-  @media (max-width: 500px) {
-    max-width: 450px;
-    margin-top: -50px;
-    margin-left: -30px;
-  }
+    @media (max-width: 500px) {
+        max-width: 450px;
+        margin-top: -50px;  
+        margin-left: -30px; 
+    };
 `;
 
 const IntroDesc = styled.p`
-  font-family: Barlow;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 25px;
-  line-height: 35px;
-  width: 422px;
-  margin: 72px auto 0 auto;
-  text-align: left;
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 25px;
+    line-height: 35px;
+    width: 422px;
+    margin: 72px auto 0 auto;
+    text-align: left;
 
-  @media (max-width: 500px) {
-    width: 244px;
-    font-size: 18px;
-    line-height: 25px;
-  }
+    @media (max-width: 500px) {
+        width: 244px;
+        font-size: 18px;
+        line-height: 25px;
+    }
 `;
 
 const IntroButton = styled.button`
-  background: #87a9b0;
-  border: 1px solid #527f89;
-  box-sizing: border-box;
-  font-family: Barlow;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 18px;
-  padding: 16px 73px;
-  margin-top: 56px;
+    background: #87A9B0;
+    border: 1px solid #527F89;
+    box-sizing: border-box;
+    font-family: Barlow;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 18px;
+    padding: 16px 73px;
+    margin-top: 56px;
 `;
 
 export default function IntroPage() {
