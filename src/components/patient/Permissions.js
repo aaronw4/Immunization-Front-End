@@ -7,7 +7,8 @@ const Permissions = props => {
                                                   location: 'Unknown',
                                                   grantPermission: true,
                                                   immunizationCompleted: false,
-                                                  date: 'asdfsafdsadf'})
+                                                  date: 'asdfsafdsadf',
+                                                  nextImmunizationDate: 'asdfasdf'})
     const [foundChild, setFoundChild] = useState(true);
 
     const typesofVaccines = [
@@ -33,7 +34,7 @@ const Permissions = props => {
                 child.immunizations.forEach(vac => {
                     console.log(`VaccineList: ${vac.vaccine} === input: ${permission.vaccine}`)
                     if(vac.vaccine === permission.vaccine){
-                        props.updateChildAction(vac.id, permission, props);
+                        props.updateChildAction(vac.id, permission, props, props.userId);
                     }
                 })
             }
@@ -71,7 +72,8 @@ const Permissions = props => {
 
 const mapStateToProps = state => {
     return {
-        childList: state.patientReducer.childList
+        childList: state.patientReducer.childList,
+        userId: state.patientReducer.userId
     }
 }
 
