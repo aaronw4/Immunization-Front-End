@@ -23,14 +23,6 @@ const PatientButton = styled.div`
   align-items: center;
 `;
 
-const IndicatorCont = styled.div`
-  border-radius: 100%;
-  width: 24px;
-  height: 24px;
-  background: #a1a1a1;
-  margin-left: 10px;
-`;
-
 const Record = styled.button`
   background: #c67474;
   border: 1px solid #924646;
@@ -49,9 +41,7 @@ export default function DoctorHome() {
   useEffect(() => {
     const getPatients = () => {
       axiosWithAuth()
-        .get(
-          "https://immunization-tracker-bw.herokuapp.com/provider/1/children"
-        )
+        .get("https://immunization-tracker-bw.herokuapp.com/provider/1/children")
         .then(response => {
           setPatients(response.data);
           setSearchResults(response.data);
@@ -95,10 +85,8 @@ export default function DoctorHome() {
 
       <PatientCont>
         {searchResults.map(patient => (
-          <PatientButton>
-            <IndicatorCont>
-              <Indicator id={patient.id} />
-            </IndicatorCont>
+          <PatientButton>            
+            <Indicator id={patient.id} />
             <p>
               {patient.firstName} {patient.lastName}
             </p>
