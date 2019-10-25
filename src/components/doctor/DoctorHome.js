@@ -1,105 +1,103 @@
 import React, { useEffect, useState } from "react";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Link, Route } from "react-router-dom";
-import styled from "styled-components";
-import Indicator from "./Indicator";
+import {axiosWithAuth} from './axios';
+import {Link, Route} from 'react-router-dom';
+import styled from 'styled-components';
+import Indicator from './Indicator';
 import SinglePatient from "./SinglePatient";
 
+const DoctorHomeCont = styled.div`
+    text-align: center;
+    margin-bottom: 50px;
+`;
+
 const PatientCont = styled.div`
-  margin-top: 40px;
+    margin-top: 40px;
 `;
 
 const PatientButton = styled.div`
-  width: 350px;
-  height: 50px;
-  left: 32px;
-  top: 191px;
-  background: #e1f2f6;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  margin-left: auto;
-  margin-right: auto;
-  align-items: center;
+    width: 350px;
+    height: 50px;
+    left: 32px;
+    top: 191px;    
+    background: #E1F2F6;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
 `;
 
 const Record = styled.button`
-  background: #c67474;
-  border: 1px solid #924646;
-  border-radius: 20px;
-  width: 80px;
-  height: 25px;
-  justify-content: center;
-  margin-right: 10px;
+    background: #C67474;
+    border: 1px solid #924646;
+    border-radius: 20px;
+    width: 80px;
+    height: 25px;
+    justify-content: center;
+    margin-right: 10px;
 `;
 
 export default function DoctorHome() {
-  const [patients, setPatients] = useState([]);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
+    const [patients, setPatients] = useState([]);
+    const [searchTerm, setSearchTerm] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
+useEffect(() => {
     const getPatients = () => {
-      axiosWithAuth()
-        .get("https://immunization-tracker-bw.herokuapp.com/provider/1/children")
-        .then(response => {
-          setPatients(response.data);
-          setSearchResults(response.data);
-          console.log(response.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
+        axiosWithAuth()
+            .get('https://immunization-tracker-bw.herokuapp.com/provider/1/children')
+            .then(response => {
+                setPatients(response.data);
+                setSearchResults(response.data);
+                console.log(response.data);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
     getPatients();
-  }, []);
+}, [])
 
-  useEffect(() => {
-    const results = patients.filter(
-      patient =>
-        patient.firstName.includes(searchTerm) ||
-        patient.lastName.includes(searchTerm)
+useEffect (() => {    
+    const results = patients.filter(patient =>        
+        patient.firstName.includes(searchTerm) || patient.lastName.includes(searchTerm)
     );
     setSearchResults(results);
-  }, [searchTerm]);
+}, [searchTerm]);
 
-  const handleChange = event => {
+const handleChange = event => {
     setSearchTerm(event.target.value);
   };
 
-  return (
-    <div>
-      <h2>Patient Status</h2>
-
-      <form className="form">
-        <input
-          id="name"
-          type="text"
-          name="textfield"
-          placeholder="&#xF002;"
-          value={searchTerm}
-          onChange={handleChange}
-          className="input"
-        />
-      </form>
-
-      <PatientCont>
-        {searchResults.map(patient => (
-          <PatientButton>            
-            <Indicator id={patient.id} />
-            <p>
-              {patient.firstName} {patient.lastName}
-            </p>
-            <Link to={`/${patient.id}`}>
-              <Record>Record</Record>
-            </Link>
-          </PatientButton>
-        ))}
-      </PatientCont>
-
-      <Route path="/:id">
-        <SinglePatient />
-      </Route>
-    </div>
-  );
+return (
+    <DoctorHomeCont>
+        <Route exact path='/'>
+            <h2>Patient Status</h2>
+            <form className='form'>
+                <input
+                id="name"
+                type="text"
+                name="textfield"
+                placeholder="&#xF002;"
+                value={searchTerm}
+                onChange={handleChange}
+                className='input'
+                />
+            </form>     
+            <PatientCont>
+                {searchResults.map(patient => (            
+                    <PatientButton key={patient.id}>
+                        <Indicator id={patient.id}/>
+                        <p>{patient.firstName} {patient.lastName}</p>
+                        <Link to={`/${patient.id}`}>
+                            <Record>Record</Record>
+                        </Link>
+                    </PatientButton>            
+                ))}
+            </PatientCont>
+        </Route>
+        <Route path='/:id'><SinglePatient/></Route>
+    </DoctorHomeCont>
+)
 }
