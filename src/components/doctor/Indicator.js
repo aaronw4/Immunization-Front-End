@@ -7,7 +7,7 @@ border-radius: 100%;
 width: 20px;
 height: 20px;
 border: 2px solid #FFFFFF;
-padding-top: 5px;
+padding-top: 7px;
 background: #229449;
 `;
 
@@ -15,7 +15,7 @@ const Yellow = styled.button`
 border-radius: 100%;
 width: 20px;
 height: 20px;
-padding-top: 5px;
+padding-top: 7px;
 background: #DBD424;
 border: 2px solid #FFFFFF;
 `;
@@ -25,7 +25,7 @@ border-radius: 100%;
 width: 20px;
 height: 20px;
 border: 2px solid #FFFFFF;
-padding-top: 5px;
+padding-top: 7px;
 background: linear-gradient(0deg, #F3F3F3, #F3F3F3), #F3F3F3;
 `;
 
@@ -34,7 +34,6 @@ const IndicatorCont = styled.div`
     width: 24px;
     height: 24px;
     background: #A1A1A1;
-    margin-left: 10px;
 `;
 
 export default function Indicator(props) {

@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 const IntroPg = styled.div`
   display: flex;
+  background-color: white;
+  text-align: center;
 `;
 
 const IntroCont = styled.div`
@@ -15,21 +17,12 @@ const IntroCont = styled.div`
 `;
 
 const IntroBackground = styled.img`
-  height: 93vh;
-  width: 16vw;
+  height: 98vh;
+  width: 10vw;
 
   @media (max-width: 800px) {
     display: none;
   }
-`;
-
-const IntroHeader = styled.h2`
-  font-family: Barlow;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 24px;
-  margin-top: 15px;
 `;
 
 const IntroImgCont = styled.div`
@@ -85,6 +78,7 @@ const IntroButton = styled.button`
   line-height: 18px;
   padding: 16px 73px;
   margin-top: 56px;
+  margin-bottom: 50px;
 `;
 
 export default function IntroPage() {
@@ -92,7 +86,6 @@ export default function IntroPage() {
     <IntroPg>
       <IntroBackground src={background} />
       <IntroCont>
-        <IntroHeader>ImmuTrack</IntroHeader>
         <IntroImgCont>
           <IntroImg src={introImg} />
         </IntroImgCont>
