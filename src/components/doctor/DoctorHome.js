@@ -4,6 +4,7 @@ import { Link, Route } from "react-router-dom";
 import styled from "styled-components";
 import Indicator from "./Indicator";
 import SinglePatient from "./SinglePatient";
+import { connect } from 'react-redux';
 
 const PatientCont = styled.div`
   margin-top: 40px;
@@ -41,28 +42,28 @@ const Record = styled.button`
   margin-right: 10px;
 `;
 
-export default function DoctorHome() {
-  const [patients, setPatients] = useState([]);
+function DoctorHome({patients, display}) {
+  //const [patients, setPatients] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
-  useEffect(() => {
-    const getPatients = () => {
-      axiosWithAuth()
-        .get(
-          "https://immunization-tracker-bw.herokuapp.com/provider/1/children"
-        )
-        .then(response => {
-          setPatients(response.data);
-          setSearchResults(response.data);
-          console.log(response.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
-    getPatients();
-  }, []);
+  // useEffect(() => {
+  //   const getPatients = () => {
+  //     axiosWithAuth()
+  //       .get(
+  //         "https://immunization-tracker-bw.herokuapp.com/provider/1/children"
+  //       )
+  //       .then(response => {
+  //         setPatients(response.data);
+  //         setSearchResults(response.data);
+  //         console.log(response.data);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   };
+  //   getPatients();
+  // }, []);
 
   useEffect(() => {
     const results = patients.filter(
@@ -94,10 +95,11 @@ export default function DoctorHome() {
       </form>
 
       <PatientCont>
-        {searchResults.map(patient => (
+        {display && searchResults.map(patient => (
           <PatientButton>
             <IndicatorCont>
-              <Indicator id={patient.id} />
+              {patient.immunizations ?
+                <Indicator patient={patient} /> : null}
             </IndicatorCont>
             <p>
               {patient.firstName} {patient.lastName}
@@ -110,8 +112,17 @@ export default function DoctorHome() {
       </PatientCont>
 
       <Route path="/:id">
-        <SinglePatient />
+        {/* <SinglePatient /> */}
       </Route>
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    patients: state.patientReducer.childList,
+    display: state.patientReducer.display
+  }
+}
+
+export default connect(mapStateToProps, {})(DoctorHome);

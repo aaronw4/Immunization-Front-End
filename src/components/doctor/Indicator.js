@@ -29,25 +29,25 @@ const White = styled.button`
   background: linear-gradient(0deg, #f3f3f3, #f3f3f3), #f3f3f3;
 `;
 
-export default function Indicator(props) {
-  const [immunization, setImmunization] = useState([]);
+export default function Indicator({patient}) {
+  const [immunization, setImmunization] = useState(patient.immunizations);
 
-  useEffect(() => {
-    const getShotInfo = () => {
-      axiosWithAuth()
-        .get(
-          `https://immunization-tracker-bw.herokuapp.com/child/${props.id}/immunization`
-        )
-        .then(response => {
-          setImmunization(response.data);
-          console.log(response.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
-    getShotInfo();
-  }, [props.id]);
+  // useEffect(() => {
+  //   const getShotInfo = () => {
+  //     axiosWithAuth()
+  //       .get(
+  //         `https://immunization-tracker-bw.herokuapp.com/child/${props.id}/immunization`
+  //       )
+  //       .then(response => {
+  //         setImmunization(response.data);
+  //         console.log(response.data);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   };
+  //   getShotInfo();
+  // }, [props.id]);
 
   var dates = immunization.map(date => new Date(date.nextImmunizationDate));
   var today = new Date();
