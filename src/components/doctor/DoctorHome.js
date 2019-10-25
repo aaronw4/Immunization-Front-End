@@ -3,10 +3,32 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import { Link, Route } from "react-router-dom";
 import styled from "styled-components";
 import Indicator from "./Indicator";
-import SinglePatient from "./SinglePatient";
+// import SinglePatient from "./SinglePatient";
 
 const PatientCont = styled.div`
-  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 60%;
+  margin: 0 auto;
+  background: #f2f2f2;
+  @media (max-width: 959px) {
+    width: 90%;
+  }
+  @media (max-width: 599px) {
+    width: 100%;
+  }
+`;
+
+const PatientStatus = styled.div`
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 10px;
+  background: #c5c5c5;
+  border-top: 1px solid #000;
+  font-size: 20px;
+  text-align: center;
 `;
 
 const PatientButton = styled.div`
@@ -79,21 +101,23 @@ export default function DoctorHome() {
 
   return (
     <div>
-      <h2>Patient Status</h2>
-
-      <form className="form">
-        <input
-          id="name"
-          type="text"
-          name="textfield"
-          placeholder="&#xF002;"
-          value={searchTerm}
-          onChange={handleChange}
-          className="input"
-        />
-      </form>
-
       <PatientCont>
+        <PatientStatus>
+          <h2>Patient Status</h2>
+        </PatientStatus>
+
+        <form className="form">
+          <input
+            id="name"
+            type="text"
+            name="textfield"
+            placeholder="&#xF002;"
+            value={searchTerm}
+            onChange={handleChange}
+            className="input"
+          />
+        </form>
+
         {searchResults.map(patient => (
           <PatientButton>
             <IndicatorCont>
@@ -109,9 +133,7 @@ export default function DoctorHome() {
         ))}
       </PatientCont>
 
-      <Route path="/:id">
-        <SinglePatient />
-      </Route>
+      <Route path="/:id">{/* <SinglePatient /> */}</Route>
     </div>
   );
 }
