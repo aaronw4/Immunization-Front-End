@@ -5,6 +5,11 @@ import styled from 'styled-components';
 import Indicator from './Indicator';
 import SinglePatient from "./SinglePatient";
 
+const DoctorHomeCont = styled.div`
+    text-align: center;
+    margin-bottom: 50px;
+`;
+
 const PatientCont = styled.div`
     margin-top: 40px;
 `;
@@ -32,7 +37,6 @@ const Record = styled.button`
     justify-content: center;
     margin-right: 10px;
 `;
-
 
 export default function DoctorHome() {
     const [patients, setPatients] = useState([]);
@@ -67,34 +71,33 @@ const handleChange = event => {
   };
 
 return (
-    <div>
-        <h2>Patient Status</h2>
-
-        <form className='form'>
-            <input
-            id="name"
-            type="text"
-            name="textfield"
-            placeholder="&#xF002;"
-            value={searchTerm}
-            onChange={handleChange}
-            className='input'
-            />
-        </form>  
-          
-        <PatientCont>
-            {searchResults.map(patient => (            
-                <PatientButton>
-                    <Indicator id={patient.id}/>
-                    <p>{patient.firstName} {patient.lastName}</p>
-                    <Link to={`/${patient.id}`}>
-                        <Record>Record</Record>
-                    </Link>
-                </PatientButton>            
-            ))}
-        </PatientCont>
-        
+    <DoctorHomeCont>
+        <Route exact path='/'>
+            <h2>Patient Status</h2>
+            <form className='form'>
+                <input
+                id="name"
+                type="text"
+                name="textfield"
+                placeholder="&#xF002;"
+                value={searchTerm}
+                onChange={handleChange}
+                className='input'
+                />
+            </form>     
+            <PatientCont>
+                {searchResults.map(patient => (            
+                    <PatientButton key={patient.id}>
+                        <Indicator id={patient.id}/>
+                        <p>{patient.firstName} {patient.lastName}</p>
+                        <Link to={`/${patient.id}`}>
+                            <Record>Record</Record>
+                        </Link>
+                    </PatientButton>            
+                ))}
+            </PatientCont>
+        </Route>
         <Route path='/:id'><SinglePatient/></Route>
-    </div>
+    </DoctorHomeCont>
 )
 }
