@@ -1,17 +1,19 @@
-import axios from 'axios';
-import { axiosWithAuth } from '../utils/axiosWithAuth';
+import axios from "axios";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-export const SET_CHILD_ACTION = 'SET_CHILD_ACTION';
-export const SET_IMMUNIZATION_ACTION = 'SET_IMMUNIZATION_ACTION';
-export const SET_USER_ACTION = 'SET_USER_ACTION';
+export const SET_CHILD_ACTION = "SET_CHILD_ACTION";
+export const SET_IMMUNIZATION_ACTION = "SET_IMMUNIZATION_ACTION";
+export const SET_USER_ACTION = "SET_USER_ACTION";
 
 export const loginAction = (props, credentials) => dispatch => {
-  let userId = -1;
+  let userId;
   axiosWithAuth()
     .post(`/auth/login/${props.user}`, credentials)
     .then(res => {
       localStorage.setItem("token", res.data.token);
+      localStorage.setItem("userId", res.data.user.id);
       userId = res.data.user.id;
+
       dispatch({ type: SET_USER_ACTION, payload: userId });
       getChildrenAction(userId, props)(dispatch);
     })
@@ -34,12 +36,12 @@ export const getImmunizations = (childArr, history, user) => dispatch => {
 };
 
 export const getChildrenAction = (userId, props) => dispatch => {
-  if(props.user === 'parents'){
+  if (props.user === "parents") {
     axiosWithAuth()
       .get(`/parent/${userId}/children`)
       .then(res => {
         dispatch({ type: SET_CHILD_ACTION, payload: res.data });
-        getImmunizations(res.data, props.history, 'patient')(dispatch);
+        getImmunizations(res.data, props.history, "patient")(dispatch);
       })
       .catch(err => console.log("ERROR CHILD REQ: ", err));
   } else {
@@ -47,15 +49,16 @@ export const getChildrenAction = (userId, props) => dispatch => {
       .get(`/provider/${userId}/children`)
       .then(res => {
         dispatch({ type: SET_CHILD_ACTION, payload: res.data });
-        getImmunizations(res.data, props.history, 'doctor')(dispatch);
+        getImmunizations(res.data, props.history, "doctor")(dispatch);
       })
       .catch(err => console.log("ERROR CHILD REQ: ", err));
   }
 };
 
 export const addChildAction = (parentId, childObj, props) => dispatch => {
+  let parent_id = localStorage.getItem("userId");
   axiosWithAuth()
-    .post(`/parent/${parentId}/children`, childObj)
+    .post(`/parent/${parent_id}/children`, childObj)
     .then(res => {
       getChildrenAction(parentId, props)(dispatch);
     })
@@ -63,7 +66,6 @@ export const addChildAction = (parentId, childObj, props) => dispatch => {
 };
 
 export const updateChildAction = (vacId, vacObj, props, userId) => dispatch => {
-
   axiosWithAuth()
     .put(`/child/immunization/${vacId}`, vacObj)
     .then(res => {
