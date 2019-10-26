@@ -8,7 +8,11 @@ import { connect } from 'react-redux';
 
 const DoctorHomeCont = styled.div`
     text-align: center;
-    margin-bottom: 50px;
+    padding: 50px 0;
+    background-color: white;
+    width: 80vw;
+    margin-right: auto;
+    margin-left: auto;
 `;
 
 const PatientCont = styled.div`
@@ -106,7 +110,7 @@ return (
                 <p>
                   {patient.firstName} {patient.lastName}
                 </p>
-                <Link to={`/single-patient/${patient.id}`}>
+                <Link to={`/patient/${patient.id}`}>
                   <Record>Record</Record>
                 </Link>
               </PatientButton>
