@@ -77,12 +77,12 @@ const AddChild = props => {
               value={child.dateOfBirth}
               className={classes.inputs}
             />
-            <label className={classes.labels} htmlFor="socialSecuirtyNumber">
+            <label className={classes.labels} htmlFor="socialSecurityNumber">
               Social Security Number
             </label>
             <input
               type="text"
-              name="socialSecuirtyNumber"
+              name="socialSecurityNumber"
               //   placeholder="Social Security Number"
               onChange={handleInput}
               value={child.socialSecuirtyNumber}
@@ -99,6 +99,7 @@ const AddChild = props => {
 };
 
 const mapStateToProps = state => {
+  console.log(state);
   return {
     userId: state.patientReducer.userId
   };
