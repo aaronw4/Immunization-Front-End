@@ -75,7 +75,8 @@ const Permissions = props => {
 const mapStateToProps = state => {
     return {
         childList: state.patientReducer.childList,
-        userId: state.patientReducer.userId
+        userId: state.patientReducer.userId,
+        user: state.loginReducer.user
     }
 }
 
