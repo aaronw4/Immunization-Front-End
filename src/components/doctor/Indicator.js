@@ -62,11 +62,11 @@ var dates = immunization.map(date => new Date(date.nextImmunizationDate));
 var today = new Date();
 var nextDates = dates.filter(date => today >= date);
 var nextDate = nextDates.sort((a, b) => a - b);
-console.log(nextDate)
+// console.log(nextDate)
 var number = dates.indexOf(nextDate[0]);
-console.log(number)
+//console.log(number)
 var permisson = ((immunization || {})[number] || {}).grantPermission;
-console.log(permisson)
+//console.log(permisson)
 
     return(
         <IndicatorCont>

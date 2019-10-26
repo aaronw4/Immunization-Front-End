@@ -9,6 +9,7 @@ import PateintHome from '../components/patient/PatientHome';
 import AddChild from '../components/patient/AddChild';
 import PatientRegisterForm from "../components/patient/PatientRegister";
 import Permissions from '../components/patient/Permissions';
+import SinglePatient from '../components/doctor/SinglePatient';
 
 const Router = () => {
   return (
@@ -24,6 +25,7 @@ const Router = () => {
         <Route path='/add-child' component={AddChild} />
         <Route path="/patient-register" component={PatientRegisterForm} />
         <Route path='/permissions' component={Permissions} />
+        <Route path='/single-patient/:id' component={SinglePatient} />
       </Switch>
     </>
   );

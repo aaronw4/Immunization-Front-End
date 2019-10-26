@@ -81,48 +81,6 @@ const handleChange = event => {
     setSearchTerm(event.target.value);
   };
 
-  // return (
-  //   <div>
-  //     <h2>Patient Status</h2>
-
-  //     <form className="form">
-  //       <input
-  //         id="name"
-  //         type="text"
-  //         name="textfield"
-  //         placeholder="&#xF002;"
-  //         value={searchTerm}
-  //         onChange={handleChange}
-  //         className="input"
-  //       />
-  //     </form>
-
-  //     <PatientCont>
-  //       {display && searchResults.map(patient => {
-  //           console.log('PATIENT: ', patient)
-  //           return (
-  //           <PatientButton>
-  //             <IndicatorCont>
-  //                {patient.immunizations ?
-  //                 <Indicator patient={patient} /> : null}
-  //             </IndicatorCont>
-  //             <p>
-  //               {patient.firstName} {patient.lastName}
-  //             </p>
-  //             <Link to={`/${patient.id}`}>
-  //               <Record>Record</Record>
-  //             </Link>
-  //           </PatientButton>
-  //         )
-  //       })}
-          
-  //     </PatientCont>
-
-  // //     <Route path="/:id">
-  // //       {/* <SinglePatient /> */}
-  // //     </Route>
-  // //   </div>
-  // // );
 return (
     <DoctorHomeCont>
         {/* <Route exact path='/'> */}
@@ -140,7 +98,7 @@ return (
             </form>     
             <PatientCont>
             {display && searchResults.map(patient => (
-              <PatientButton>
+              <PatientButton key={patient.id}>
                 <IndicatorCont>
                   {patient.immunizations ?
                     <Indicator patient={patient} /> : null}
@@ -148,7 +106,7 @@ return (
                 <p>
                   {patient.firstName} {patient.lastName}
                 </p>
-                <Link to={`/${patient.id}`}>
+                <Link to={`/single-patient/${patient.id}`}>
                   <Record>Record</Record>
                 </Link>
               </PatientButton>

@@ -34,7 +34,6 @@ const Header = ({ location, history }) => {
   };
 
   if (token) {
-    console.log('HISTORY: ', history);
     return (
       <Grid
         className={classes.root}

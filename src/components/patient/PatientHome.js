@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import './PatientHome.css';
+import { PatientButton } from '../../styles/muiStyledButtons';
 
 const PatientHome = props => {
     // console.log('PROPS: ', props);
@@ -15,8 +16,7 @@ const PatientHome = props => {
 
     const rowSpacing = {
         display: 'flex',
-        justifyContent: 'space-between',
-        paddingTop: '10px'
+        //justifyContent: 'space-around',
     }
 
     const statusContainer = {
@@ -24,7 +24,7 @@ const PatientHome = props => {
         border: '1px solid #A1A1A1',
         width: '26px',
         height: '26px',
-        borderRadius: '50%'
+        borderRadius: '50%',
     }
 
     const statusGreen = {
@@ -59,8 +59,8 @@ const PatientHome = props => {
 
     return(
         <div className='Patient-Container'>
-            <button onClick={addChildButton}>Add Child</button>
-            <button onClick={permissionButton}>Permissions</button>
+            <PatientButton onClick={addChildButton}>Add Child</PatientButton>
+            <PatientButton onClick={permissionButton}>Permissions</PatientButton>
             {  
                 props.displayPatient && props.patientList.map((patient, index) => {
                 
@@ -69,35 +69,55 @@ const PatientHome = props => {
                     <>
                         <h1 onClick={() => displayVacc(index)}>{patient.firstName} {patient.lastName}</h1>
                         <div key={patient.id} style={{margin: '0 auto', width: '50%'}}>
-                            <table key={patient.id}
+                            <div key={patient.id}
                                 className={active === index ? 'Show-Vaccines' : 'Hide-Vaccines'}>
-                                <thead>
-                                    <tr style={tableHead}>
-                                        <th>Status</th>
-                                        <th>Vaccine</th>
-                                        <th>Date</th>
-                                        <th>Location</th>
-                                    </tr>
-                                </thead>
-                                <tbody style={{width: '100%'}}>
-                                    {patient.immunizations && patient.immunizations.map(vac => {
-                                        let convertDate = new Date(vac.date);
-                                        return <tr key={vac.id} style={rowSpacing}>
-                                                    <td>
-                                                        <div style={statusContainer}>
-                                                            <div style={vac.immunizationCompleted ? 
-                                                            statusGreen : 
-                                                            statusYellow}
-                                                            className='Space-between-Table' />
-                                                        </div>
-                                                    </td>
-                                                    <td className='Space-between-Table'>{vac.vaccine}</td>
-                                                    <td className='Space-between-Table'>{convertDate.toDateString()}</td>
-                                                    <td>{vac.location}</td>
-                                                </tr>
-                                    })}
-                                </tbody>
-                            </table>
+                                <div>
+                                    <div style={tableHead}>
+                                        <h2>Status</h2>
+                                        <h2>Vaccine</h2>
+                                        <h2>Date</h2>
+                                        <h2>Location</h2>
+                                    </div>
+                                </div>
+                                <div style={{width: '100%'}}>
+                                     {patient.immunizations && patient.immunizations.map(vac => {
+                                         let convertDate = new Date(vac.date);
+                                       return <div key={vac.id} style={rowSpacing}>
+                                       <div style={{margin: '0 11%'}}>
+                                           <div style={statusContainer}>
+                                               <div style={vac.immunizationCompleted ? 
+                                               statusGreen : 
+                                               statusYellow}/>
+                                           </div>
+                                       </div>
+                                       <p className='vacStyle'>{vac.vaccine}</p>
+                                       <p style={{minWidth: '23%'}}>{convertDate.toDateString()}</p>
+                                       <p>{vac.location}</p>
+                                   </div>
+                                    })} 
+                                    {/* <div>
+                                        {vacValues.status && vacValues.status.map(value => {
+                                            return <div>{value.status}</div>
+                                        })}
+                                    </div>
+                                    <div>
+                                        {vacValues.vaccine && vacValues.vaccine.map(value => {
+                                            return <div>{value.vaccine}</div>
+                                        })}
+                                    </div>
+                                    <div>
+                                        {vacValues.date && vacValues.date.map(value => {
+                                            return <div>{value.date}</div>
+                                        })}
+                                    </div>
+                                    <div>
+                                        {vacValues.location && vacValues.location.map(value => {
+                                            return <div>{value.location}</div>
+                                        })}
+                                    </div> */}
+                                        
+                                </div>
+                            </div>
                         </div>
                     </>
                 )

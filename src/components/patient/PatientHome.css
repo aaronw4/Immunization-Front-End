@@ -16,3 +16,8 @@
     margin: 0 auto;
     height: 100vh;
 }
+
+.vacStyle{
+    min-width: 24%;
+    margin-left: 10%;
+}

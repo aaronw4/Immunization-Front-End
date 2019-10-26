@@ -3,11 +3,12 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import Indicator from "./Indicator";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
-export default function SinglePatient() {
+function SinglePatient(props) {
   const [patient, setPatient] = useState({});
   const [immunization, setImmunization] = useState([]);
-  const id = window.location.pathname;
+  //const id = window.location.pathname;
 
   const Header = styled.header`
     display: flex;
@@ -57,54 +58,68 @@ export default function SinglePatient() {
     margin: 25px auto 0 auto;
   `;
 
-  useEffect(() => {
-    const getPatient = () => {
-      axiosWithAuth()
-        .get(
-          `https://immunization-tracker-bw.herokuapp.com/parent/children${id}`
-        )
-        .then(response => {
-          setPatient(response.data);
-          console.log(response.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
-    getPatient();
-  }, [id]);
+  // useEffect(() => {
+  //   const getPatient = () => {
+  //     axiosWithAuth()
+  //       .get(
+  //         `https://immunization-tracker-bw.herokuapp.com/parent/children${id}`
+  //       )
+  //       .then(response => {
+  //         setPatient(response.data);
+  //         console.log(response.data);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   };
+  //   getPatient();
+  // }, [id]);
 
+  // useEffect(() => {
+  //   const getShotInfo = () => {
+  //     axiosWithAuth()
+  //       .get(
+  //         `https://immunization-tracker-bw.herokuapp.com/child${id}/immunization`
+  //       )
+  //       .then(response => {
+  //         setImmunization(response.data);
+  //         console.log(response.data);
+  //       })
+  //       .catch(err => {
+  //         console.log(err);
+  //       });
+  //   };
+  //   getShotInfo();
+  // }, [id]);
   useEffect(() => {
-    const getShotInfo = () => {
-      axiosWithAuth()
-        .get(
-          `https://immunization-tracker-bw.herokuapp.com/child${id}/immunization`
-        )
-        .then(response => {
-          setImmunization(response.data);
-          console.log(response.data);
-        })
-        .catch(err => {
-          console.log(err);
-        });
-    };
-    getShotInfo();
-  }, [id]);
+    const id = props.match.params.id;
+    const childObj = props.childList.filter(child => {
+      // console.log('CHILD_ID: ', child.id);
+      if(`${child.id}` === id){
+        // console.log('CHILD: ', child);
+        return child;
+      }
+    });
+    // console.log('ID: ', id)
+    console.log('GOT REF: ', childObj[0])
+    setPatient(childObj[0])
+  }, []) 
 
   return (
     <div>
       <Header>
         <div>
-          <h2>
-            {patient.lastName}, {patient.firstName}
-          </h2>
+          {/* {console.log('PATIENT_SINGLE_PATIENT : ', patient)} */}
+          {patient.immunizations ?
+            <h2>{patient.lastName}, {patient.firstName}</h2> : null}
         </div>
         <div>
-          <Indicator id={patient.id} />
+          {patient.immunizations ?
+          <Indicator patient={patient} /> : null}
         </div>
       </Header>
       <PatientCont>
-        {immunization.map(shot =>
+        {patient.immunizations && patient.immunizations.map(shot =>
           shot.immunizationCompleted === true ? null : (
             <PatientButton key={shot.id}>
               <PatientString>
@@ -114,7 +129,7 @@ export default function SinglePatient() {
             </PatientButton>
           )
         )}
-        {immunization.map(shot =>
+        {patient.immunizations && patient.immunizations.map(shot =>
           shot.immunizationCompleted === true ? (
             <PatientButton key={shot.id}>
               <PatientString>
@@ -131,3 +146,11 @@ export default function SinglePatient() {
     </div>
   );
 }
+
+const mapStateToProps = state => {
+  return {
+    childList: state.patientReducer.childList
+  }
+}
+
+export default connect(mapStateToProps, {})(SinglePatient);
