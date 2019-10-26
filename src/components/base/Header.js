@@ -10,9 +10,11 @@ const useStyles = makeStyles({
     width: "100%",
     margin: "0 auto",
     padding: theme.spacing(2),
-    background: "#fff",
+    background: "#f2f2f2",
+    fontFamily: theme.typography.fontFamily,
+    lineHeight: "0",
     textAlign: "center",
-    [theme.breakpoints.up("md")]: {
+    [theme.breakpoints.up("sm")]: {
       width: "80%"
     }
   }

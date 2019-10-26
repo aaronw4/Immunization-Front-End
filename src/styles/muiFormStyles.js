@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
     width: "100%",
     margin: "0 auto",
     paddingTop: theme.spacing(5),
-    background: "#fff",
+    background: "#f2f2f2",
     fontFamily: theme.typography.fontFamily,
     fontSize: "15px",
     [theme.breakpoints.up("md")]: {

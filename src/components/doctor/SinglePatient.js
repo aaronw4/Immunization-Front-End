@@ -3,12 +3,27 @@ import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import Indicator from "./Indicator";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { connect } from 'react-redux';
+import { connect } from "react-redux";
 
 function SinglePatient(props) {
   const [patient, setPatient] = useState({});
   const [immunization, setImmunization] = useState([]);
   //const id = window.location.pathname;
+
+  const Container = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 90vh;
+    width: 80%;
+    margin: 0 auto;
+    background: #f2f2f2;
+    border-top: 1px solid #000;
+    @media (max-width: 599px) {
+      width: 100%;
+    }
+  `;
 
   const Header = styled.header`
     display: flex;
@@ -95,62 +110,69 @@ function SinglePatient(props) {
     const id = props.match.params.id;
     const childObj = props.childList.filter(child => {
       // console.log('CHILD_ID: ', child.id);
-      if(`${child.id}` === id){
+      if (`${child.id}` === id) {
         // console.log('CHILD: ', child);
         return child;
       }
     });
     // console.log('ID: ', id)
-    console.log('GOT REF: ', childObj[0])
-    setPatient(childObj[0])
-  }, []) 
+    console.log("GOT REF: ", childObj[0]);
+    setPatient(childObj[0]);
+  }, []);
 
   return (
-    <div>
+    <Container>
       <Header>
         <div>
           {/* {console.log('PATIENT_SINGLE_PATIENT : ', patient)} */}
-          {patient.immunizations ?
-            <h2>{patient.lastName}, {patient.firstName}</h2> : null}
+          {patient.immunizations ? (
+            <h2>
+              {patient.lastName}, {patient.firstName}
+            </h2>
+          ) : null}
         </div>
         <div>
-          {patient.immunizations ?
-          <Indicator patient={patient} /> : null}
+          {patient.immunizations ? <Indicator patient={patient} /> : null}
         </div>
       </Header>
       <PatientCont>
-        {patient.immunizations && patient.immunizations.map(shot =>
-          shot.immunizationCompleted === true ? null : (
-            <PatientButton key={shot.id}>
-              <PatientString>
-                <div>{shot.vaccine}</div> due{" "}
-                {shot.nextImmunizationDate.slice(0, 10)}
-              </PatientString>
-            </PatientButton>
-          )
-        )}
-        {patient.immunizations && patient.immunizations.map(shot =>
-          shot.immunizationCompleted === true ? (
-            <PatientButton key={shot.id}>
-              <PatientString>
-                <div>{shot.vaccine}</div>{" "}
-                <div> completed on {shot.date.slice(0, 10)}</div>
-              </PatientString>
-            </PatientButton>
-          ) : null
-        )}
-      </PatientCont>
+        {patient.immunizations &&
+          patient.immunizations.map(shot =>
+            shot.immunizationCompleted === true ? null : (
+              <PatientButton key={shot.id}>
+                <PatientString>
+                  <div>{shot.vaccine}</div> due{" "}
+                  {shot.nextImmunizationDate.slice(0, 10)}
+                </PatientString>
+              </PatientButton>
+            )
+          )}
+        {patient.immunizations &&
+          patient.immunizations.map(shot =>
+            shot.immunizationCompleted === true ? (
+              <PatientButton key={shot.id}>
+                <PatientString>
+                  <div>{shot.vaccine}</div>{" "}
+                  <div> completed on {shot.date.slice(0, 10)}</div>
+                </PatientString>
+              </PatientButton>
+            ) : null
+          )}
+      </PatientCont>{" "}
       <Link to="/UpdateImmune">
         <Button>Add Record</Button>
       </Link>
-    </div>
+    </Container>
   );
 }
 
 const mapStateToProps = state => {
   return {
     childList: state.patientReducer.childList
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps, {})(SinglePatient);
+export default connect(
+  mapStateToProps,
+  {}
+)(SinglePatient);
