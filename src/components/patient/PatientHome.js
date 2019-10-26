@@ -4,7 +4,6 @@ import "./PatientHome.css";
 import { PatientButton } from "../../styles/muiStyledButtons";
 
 const PatientHome = props => {
-  // console.log('PROPS: ', props);
   //console.log('PROPS IMMUNIZATIONS: ', props.childImunizations);
 
   const [active, setActive] = useState(-1);
