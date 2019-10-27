@@ -1,18 +1,18 @@
-import { SET_IMMUNIZATION_ACTION } from '../actions';
-import { SET_CHILD_ACTION } from '../actions';
-import { SET_USER_ACTION } from '../actions';
+import { SET_IMMUNIZATION_ACTION } from "../actions";
+import { SET_CHILD_ACTION } from "../actions";
+import { SET_USER_ACTION } from "../actions";
 
 const initialState = {
-    childList: [
+  childList: [
+    {
+      firstName: "Brandon",
+      immunizations: [
         {
-            firstName: 'Brandon',
-            immunizations: [
-                {
-                    vaccine: 'stuff'
-                }
-            ]
+          vaccine: "stuff"
         }
-        /* 
+      ]
+    }
+    /* 
             {
                 name: [type text]
                 age: [type text]
@@ -27,35 +27,35 @@ const initialState = {
                 ]
             }
         */
-    ],
-    display: false,
-    userId: -1
-}
+  ],
+  display: false,
+  userId: -1
+};
 
 export const patientReducer = (state = initialState, action) => {
-    
-    switch(action.type){
-        case SET_CHILD_ACTION:
-            return {
-                ...state,
-                childList: action.payload,
-                display: false
-            }
-        case SET_IMMUNIZATION_ACTION:
-            let tempArr = [...state.childList];
-            tempArr[action.payload.index].immunizations = action.payload.immuneObj || {Empty: 0};
-            return {
-               ...state,
-               childList: [...tempArr],
-               display: true
-            }
-        case SET_USER_ACTION:
-            return {
-                ...state,
-                userId: action.payload,
-                display: false
-            }
-        default:
-            return state;
-    }
-}
+  switch (action.type) {
+    case SET_CHILD_ACTION:
+      return {
+        ...state,
+        childList: action.payload,
+        display: false
+      };
+    case SET_IMMUNIZATION_ACTION:
+      let tempArr = [...state.childList];
+      tempArr[action.payload.index].immunizations = action.payload
+        .immuneObj || { Empty: 0 };
+      return {
+        ...state,
+        childList: [...tempArr],
+        display: true
+      };
+    case SET_USER_ACTION:
+      return {
+        ...state,
+        userId: action.payload,
+        display: false
+      };
+    default:
+      return state;
+  }
+};

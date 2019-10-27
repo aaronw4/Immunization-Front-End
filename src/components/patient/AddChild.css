@@ -1,0 +1,13 @@
+body {
+    font-family: "Barlow", sans-serif;
+  }
+  
+  
+  input,textarea{
+    width:20rem;
+    height: 3rem;
+    
+  }
+  div{
+    margin-bottom: 2rem
+  }
