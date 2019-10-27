@@ -95,26 +95,6 @@ const PatientHome = props => {
                                        <p>{vac.location}</p>
                                    </div>
                                     })} 
-                                    {/* <div>
-                                        {vacValues.status && vacValues.status.map(value => {
-                                            return <div>{value.status}</div>
-                                        })}
-                                    </div>
-                                    <div>
-                                        {vacValues.vaccine && vacValues.vaccine.map(value => {
-                                            return <div>{value.vaccine}</div>
-                                        })}
-                                    </div>
-                                    <div>
-                                        {vacValues.date && vacValues.date.map(value => {
-                                            return <div>{value.date}</div>
-                                        })}
-                                    </div>
-                                    <div>
-                                        {vacValues.location && vacValues.location.map(value => {
-                                            return <div>{value.location}</div>
-                                        })}
-                                    </div> */}
                                         
                                 </div>
                             </div>
