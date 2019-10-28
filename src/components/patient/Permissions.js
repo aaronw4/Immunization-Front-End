@@ -42,7 +42,7 @@ const Permissions = props => {
               ...vac,
               vaccine: permission.vaccine,
               location: permission.location,
-              grantPermission: permission.grantPermission
+              grantPermission: true
             };
             props.updateChildAction(
               vac.id,

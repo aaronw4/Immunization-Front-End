@@ -19,6 +19,7 @@ const Container = styled.div`
   @media (max-width: 599px) {
     height: 10vh;
   }
+  margin-bottom: 0;
 `;
 
 const LeftDiv = styled.div`

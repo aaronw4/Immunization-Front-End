@@ -2,6 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import './PatientHome.css';
 import { PatientButton } from '../../styles/muiStyledButtons';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
+import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
+
+library.add(faArrowDown);
+library.add(faArrowRight);
 
 const PatientHome = props => {
     // console.log('PROPS: ', props);
@@ -67,7 +74,10 @@ const PatientHome = props => {
                 // console.log('PATIENT: ', patient);
                 return (
                     <>
-                        <h1 onClick={() => displayVacc(index)}>{patient.firstName} {patient.lastName}</h1>
+                        <h1 onClick={() => displayVacc(index)}>{patient.firstName} {patient.lastName} 
+                        {active === index ? 
+                             <FontAwesomeIcon icon='arrow-down' /> :
+                             <FontAwesomeIcon icon='arrow-right' />}</h1>
                         <div key={patient.id} style={{margin: '0 auto', width: '50%'}}>
                             <div key={patient.id}
                                 className={active === index ? 'Show-Vaccines' : 'Hide-Vaccines'}>
@@ -83,13 +93,13 @@ const PatientHome = props => {
                                      {patient.immunizations && patient.immunizations.map(vac => {
                                          let convertDate = new Date(vac.date);
                                        return <div key={vac.id} style={rowSpacing}>
-                                       <div style={{margin: '0 11%'}}>
-                                           <div style={statusContainer}>
-                                               <div style={vac.immunizationCompleted ? 
-                                               statusGreen : 
-                                               statusYellow}/>
-                                           </div>
-                                       </div>
+                                                <div style={{margin: '0 11%'}}>
+                                                    <div style={statusContainer}>
+                                                        <div style={vac.immunizationCompleted ? 
+                                                        statusGreen : 
+                                                        statusYellow}/>
+                                                    </div>
+                                              </div>
                                        <p className='vacStyle'>{vac.vaccine}</p>
                                        <p style={{minWidth: '23%'}}>{convertDate.toDateString()}</p>
                                        <p>{vac.location}</p>
