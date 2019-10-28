@@ -73,39 +73,6 @@ function SinglePatient(props) {
     margin: 25px auto 0 auto;
   `;
 
-  // useEffect(() => {
-  //   const getPatient = () => {
-  //     axiosWithAuth()
-  //       .get(
-  //         `https://immunization-tracker-bw.herokuapp.com/parent/children${id}`
-  //       )
-  //       .then(response => {
-  //         setPatient(response.data);
-  //         console.log(response.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   };
-  //   getPatient();
-  // }, [id]);
-
-  // useEffect(() => {
-  //   const getShotInfo = () => {
-  //     axiosWithAuth()
-  //       .get(
-  //         `https://immunization-tracker-bw.herokuapp.com/child${id}/immunization`
-  //       )
-  //       .then(response => {
-  //         setImmunization(response.data);
-  //         console.log(response.data);
-  //       })
-  //       .catch(err => {
-  //         console.log(err);
-  //       });
-  //   };
-  //   getShotInfo();
-  // }, [id]);
   useEffect(() => {
     const id = props.match.params.id;
     const childObj = props.childList.filter(child => {
@@ -159,7 +126,7 @@ function SinglePatient(props) {
             ) : null
           )}
       </PatientCont>{" "}
-      <Link to="/UpdateImmune">
+      <Link to={`/UpdateImmune/${props.match.params.id}`}>
         <Button>Add Record</Button>
       </Link>
     </Container>

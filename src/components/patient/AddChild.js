@@ -5,6 +5,8 @@ import styled from "styled-components";
 import axios from "axios";
 import * as Yup from "yup";
 import "./AddChild.css";
+import { connect } from 'react-redux';
+import { addChildAction } from '../../actions';
 
 const Background = styled.div`
   display: flex;
@@ -17,7 +19,7 @@ const Background = styled.div`
   margin-right: 15rem;
   padding: 5rem;
 `;
-const SubmitButton = styled.div`
+const SubmitButton = styled.button`
   width: 12rem;
   height: 3rem;
   margin-top: 3rem;
@@ -30,31 +32,41 @@ const SubmitButton = styled.div`
   background-color: #6b8496;
 `;
 
-export default function AddChild(props) {
-  const [child, setChild] = useState([]);
+function AddChild(props) {
+  const [child, setChild] = useState({});
 
-  const handleInput = e => {
-    setChild({ ...child, [e.target.name]: e.target.value });
-  };
+  // const handleInput = e => {
+  //   setChild({ ...child, [e.target.name]: e.target.value });
+  // };
+
   return (
     <Background>
       <Form>
         <div>
-          <h6> Child's Name </h6>
+          <h6> First Name </h6>
 
           <Field
-            onChange={handleInput}
             id="childName"
-            value={(props.firstName, props.lastName)}
+            value={props.firstName}
             type="text"
-            name="name"
+            name="firstName"
+            placeholder="Enter your Child's Name"
+          />
+        </div>
+        <div>
+          <h6> Last Name </h6>
+
+          <Field
+            id="childName"
+            value={props.lastName}
+            type="text"
+            name="lastName"
             placeholder="Enter your Child's Name"
           />
         </div>
         <div>
           <h6> Date of Birth</h6>
           <Field
-            onChange={handleInput}
             id="dateOfBirth"
             value={props.dateOfBirth}
             type="text"
@@ -65,7 +77,6 @@ export default function AddChild(props) {
         <div>
           <h6>Social Security</h6>
           <Field
-            onChange={handleInput}
             id="socialSecurityNumber"
             value={props.socialSecurityNumber}
             type="text"
@@ -76,7 +87,6 @@ export default function AddChild(props) {
         <div>
           <h6>Sign Up Code</h6>
           <Field
-            onChange={handleInput}
             id="parent_id"
             value={props.parent_id}
             type="text"
@@ -98,48 +108,51 @@ export default function AddChild(props) {
 }
 
 const FormikAddChild = withFormik({
-  mapPropsToValues({ name, dateOfBirth, socialSecurityNumber, parent_id }) {
+  mapPropsToValues({ firstName, lastName, dateOfBirth, socialSecurityNumber, parent_id }) {
     return {
-      name: name || "",
+      firstName: firstName || "",
+      lastName: lastName || "",
       dateOfBirth: dateOfBirth || "",
       socialSecurityNumber: socialSecurityNumber || "",
       parent_id: parent_id || ""
     };
   },
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required("Name is required"),
-    dateOfBirth: Yup.string().required("DOB is required"),
-    socialSecurityNumber: Yup.string().required("SSN is required"),
-    parent_id: Yup.string().required("Code is required")
-  }),
-  handleSubmit(values, props, { resetForm, setErrors, setSubmitting }) {
-    axios
-      .post(
-        `https://immunization-tracker-bw.herokuapp.com/parent/${props.id}/children`,
-        values
-      )
-      .then(res => {
-        console.log(res);
-        resetForm();
-        setSubmitting(true);
-      })
-      .catch(err => {
-        console.log(err);
-        setSubmitting(false);
-      });
+  // validationSchema: Yup.object().shape({
+  //   name: Yup.string().required("Name is required"),
+  //   dateOfBirth: Yup.string().required("DOB is required"),
+  //   socialSecurityNumber: Yup.string().required("SSN is required"),
+  //   parent_id: Yup.string().required("Code is required")
+  // }),
+  handleSubmit(values, {props}) {
+    console.log('SUBMITED: ', props);
+    props.addChildAction(props.userId, values, props);
+    // axios
+    //   .post(
+    //     `https://immunization-tracker-bw.herokuapp.com/parent/${props.id}/children`,
+    //     values
+    //   )
+    //   .then(res => {
+    //     console.log(res);
+    //     resetForm();
+    //     setSubmitting(true);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //     setSubmitting(false);
+    //   });
   }
 })(AddChild);
 
 // export default FormikAddChild;
 
-// const mapStateToProps = state => {
-//   console.log(state);
-//   return {
-//     userId: state.patientReducer.userId
-//   };
-// };
+const mapStateToProps = state => {
+  return {
+    userId: state.patientReducer.userId,
+    user: state.loginReducer.user
+  };
+};
 
-// export default connect(
-//   mapStateToProps,
-//   { addChildAction }
-// )(AddChild);
+export default connect(
+  mapStateToProps,
+  { addChildAction }
+)(FormikAddChild);

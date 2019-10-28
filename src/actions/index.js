@@ -74,3 +74,13 @@ export const updateChildAction = (vacId, vacObj, props, userId) => dispatch => {
     })
     .catch(err => console.log("ERROR: ", err));
 };
+
+export const addImmunizationUpdate = (values, childId, providerId, props) => dispatch => {
+  axiosWithAuth()
+    .post(`/child/${childId}/immunization/${providerId}`, values)
+    .then(res => {
+      console.log("Success Post: ", res);
+      getChildrenAction(providerId, props)(dispatch);
+    })
+    .catch(err => console.log("ERROR: ", err));
+}

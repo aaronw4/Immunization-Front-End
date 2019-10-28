@@ -13,7 +13,7 @@ import SinglePatient from "../components/doctor/SinglePatient";
 import PatientHome from "../components/patient/PatientHome";
 import AddChild from "../components/patient/AddChild";
 import Permissions from "../components/patient/Permissions";
-// import UpdateImmune from '../components/patient/UpdateImmune'
+import UpdateImmune from '../components/patient/UpdateImmune'
 
 const Router = () => {
   return (
@@ -30,7 +30,7 @@ const Router = () => {
         <PrivateRoute path="/patient-home" component={PatientHome} />
         <PrivateRoute path="/add-child" component={AddChild} />
         <PrivateRoute path="/permissions" component={Permissions} />
-        {/* <PrivateRoute path='/update' component={UpdateImmune}/> */}
+        <PrivateRoute path="/UpdateImmune/:id" component={UpdateImmune} />
       </Switch>
     </>
   );
