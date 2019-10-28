@@ -9,7 +9,7 @@ import { LoginButton } from "../../styles/muiStyledButtons";
 const Permissions = props => {
   const [permission, setPermission] = useState({
     vaccine: "Measles",
-    location: "Unknown",
+    location: "",
     grantPermission: false
   });
   const [foundChild, setFoundChild] = useState(true);
@@ -74,7 +74,7 @@ const Permissions = props => {
 
   return (
     <>
-      <Title>Add Child</Title>
+      <Title>Permission</Title>
       <Box className={classes.root}>
         <form onSubmit={handleSubmit}>
           <Grid
@@ -84,7 +84,7 @@ const Permissions = props => {
             justify="center"
           >
             <label className={classes.labels} htmlFor="fullName">
-              I,{" "}
+              I:
             </label>
             <input
               type="text"
@@ -92,9 +92,10 @@ const Permissions = props => {
               value={permission.fullName}
               onChange={handleChange}
               className={classes.inputs}
+              placeholder='Guardian'
             />
             <label className={classes.labels} htmlFor="location">
-              , grant,
+              Grant:
             </label>
             <input
               type="text"
@@ -102,9 +103,10 @@ const Permissions = props => {
               value={permission.location}
               onChange={handleChange}
               className={classes.inputs}
+              placeholder='Location'
             />
             <label className={classes.labels} htmlFor="childsName">
-              , Permission to update,
+              Permission to update:
             </label>
             <input
               type="text"
@@ -112,6 +114,7 @@ const Permissions = props => {
               value={permission.childsName}
               onChange={handleChange}
               className={classes.inputs}
+              placeholder='Patients Name'
             />
             <span>{foundChild ? null : <p>Child Name Not Found</p>}</span>
             <label className={classes.labels} htmlFor="vaccine">
