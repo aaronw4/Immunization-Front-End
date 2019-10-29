@@ -54,7 +54,7 @@ function SinglePatient(props) {
     }
   `;
 
-  const PatientString = styled.div`
+  const PatientString = styled.span`
     width: 750px;
     display: flex;
     justify-content: space-between;
