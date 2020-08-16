@@ -1,0 +1,63 @@
+.Show-Vaccines {
+  display: flex;
+  flex-direction: column;
+}
+
+.Hide-Vaccines {
+  display: none;
+}
+
+.Space-between-Table {
+  padding-right: 3%;
+}
+
+.Patient-Container {
+  background: #f2f2f2;
+  width: 80%;
+  margin: 0 auto;
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+}
+
+@media(max-width: 599px){
+  .Patient-Container{
+    margin: 0;
+    width: 100%;
+  }
+}
+
+.vacStyle {
+  min-width: 24%;
+  margin-left: 10%;
+}
+
+@media(max-width: 599px){
+  .vacStyle{
+    margin-left: 4%
+  }
+}
+
+.buttons {
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  width: 50%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+}
+
+/* .patient-name {
+
+
+@media (max-width: 599px) {
+  .Patient-Container {
+    width: 100%;
+  }
+  .buttons {
+    width: 100%;
+  }
+}
+} */
