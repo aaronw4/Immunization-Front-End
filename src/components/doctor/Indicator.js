@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {axiosWithAuth} from '../../utils/axiosWithAuth';
+import React from "react";
+// import {useEffect, useState} from 'react';
+// import {axiosWithAuth} from '../../utils/axiosWithAuth';
 import styled from 'styled-components';
 
 const Green = styled.button`
@@ -38,7 +39,8 @@ const IndicatorCont = styled.div`
 
 export default function Indicator(props) {
   // console.log('INDICATOR  _PATIENT: ', props.patient);
-  const [immunization, setImmunization] = useState(props.patient.immunizations);
+//   const [immunization, setImmunization] = useState(props.patient.immunizations);
+  const immunization = props.patient.immunizations
 
   // useEffect(() => {
   //   const getShotInfo = () => {

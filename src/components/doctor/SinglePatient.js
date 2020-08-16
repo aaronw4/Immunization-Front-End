@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
+// import { axiosWithAuth } from "../../utils/axiosWithAuth";
 import Indicator from "./Indicator";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { connect } from "react-redux";
 
 function SinglePatient(props) {
   const [patient, setPatient] = useState({});
-  const [immunization, setImmunization] = useState([]);
+  // const [immunization, setImmunization] = useState([]);
   //const id = window.location.pathname;
 
   const Container = styled.div`

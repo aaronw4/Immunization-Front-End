@@ -1,8 +1,9 @@
-import React,{useState, useEffect} from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+// import {useEffect, useState} from 'react';
+// import ReactDOM from "react-dom";
 import { withFormik, Form, Field } from "formik";
-import * as Yup from "yup";
-import axios from "axios";
+// import * as Yup from "yup";
+// import axios from "axios";
 import styled from 'styled-components';
 import './AddChild.css';
 import { connect } from 'react-redux';
@@ -36,11 +37,11 @@ background-color: #6b8496;
 `
 
 function UpdateImmune(props) {
-  const [immunization, setImmunization] = useState({});
+//  const [immunization, setImmunization] = useState({});
   
-  const handleInput =e=> {
-    setImmunization({...immunization,[e.target.name]: e.target.value});
-}
+//   const handleInput =e=> {
+//     setImmunization({...immunization,[e.target.name]: e.target.value});
+// }
   
   return (
     

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { axiosWithAuth } from "../../utils/axiosWithAuth";
-import { Link, Route } from "react-router-dom";
+// import { axiosWithAuth } from "../../utils/axiosWithAuth";
+import { Link} from "react-router-dom";
 import styled from "styled-components";
 import Indicator from "./Indicator";
-import SinglePatient from "./SinglePatient";
+// import SinglePatient from "./SinglePatient";
 import { connect } from "react-redux";
 
 const DoctorHomeCont = styled.div`
