@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import React from "react";
+// import {useState, useEffect} from 'react';
+// import ReactDOM from "react-dom";
 import { withFormik, Form, Field } from "formik";
 import styled from "styled-components";
-import axios from "axios";
-import * as Yup from "yup";
+// import axios from "axios";
+// import * as Yup from "yup";
 import "./AddChild.css";
 import { connect } from 'react-redux';
 import { addChildAction } from '../../actions';
@@ -33,7 +34,7 @@ const SubmitButton = styled.button`
 `;
 
 function AddChild(props) {
-  const [child, setChild] = useState({});
+  // const [child, setChild] = useState({});
 
   // const handleInput = e => {
   //   setChild({ ...child, [e.target.name]: e.target.value });
