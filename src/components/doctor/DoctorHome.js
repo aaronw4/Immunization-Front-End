@@ -8,12 +8,11 @@ import { connect } from "react-redux";
 
 const DoctorHomeCont = styled.div`
   text-align: center;
-  /* padding: 50px 0; */
   background-color: white;
-  height: 100vh;
   width: 80vw;
   margin-right: auto;
   margin-left: auto;
+  padding-bottom: 100px;
   background: #f2f2f2;
   @media (max-width: 599px) {
     width: 100%;
@@ -92,14 +91,14 @@ function DoctorHome({ patients, display }) {
   useEffect(() => {
     const results = patients.filter(
       patient =>
-        patient.firstName.includes(searchTerm) ||
-        patient.lastName.includes(searchTerm)
+        patient.firstName.toLowerCase().includes(searchTerm) ||
+        patient.lastName.toLowerCase().includes(searchTerm)
     );
     setSearchResults(results);
   }, [searchTerm]);
 
   const handleChange = event => {
-    setSearchTerm(event.target.value);
+    setSearchTerm(event.target.value.toLowerCase());
   };
 
   return (
