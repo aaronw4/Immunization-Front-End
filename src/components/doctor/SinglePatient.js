@@ -8,16 +8,16 @@ import { connect } from "react-redux";
 function SinglePatient(props) {
   const [patient, setPatient] = useState({});
   // const [immunization, setImmunization] = useState([]);
-  //const id = window.location.pathname;
-
+  // const id = window.location.pathname;
+  
   const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
-    height: 90vh;
     width: 80%;
     margin: 0 auto;
+    padding-bottom: 50px;
     background: #f2f2f2;
     border-top: 1px solid #000;
     @media (max-width: 599px) {
@@ -91,10 +91,9 @@ function SinglePatient(props) {
     <Container>
       <Header>
         <div>
-          {/* {console.log('PATIENT_SINGLE_PATIENT : ', patient)} */}
           {patient.immunizations ? (
             <h2>
-              {patient.lastName}, {patient.firstName}
+              {patient.lastName}, {patient.firstName} &nbsp;
             </h2>
           ) : null}
         </div>
