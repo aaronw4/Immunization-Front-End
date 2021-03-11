@@ -16,8 +16,8 @@ const Background = styled.div`
   background-color: lightgrey;
   height: 40rem;
   width: 40rem;
-  margin-left: 30rem;
-  margin-right: 15rem;
+  margin-left: auto;
+  margin-right: auto;
   padding: 5rem;
 `;
 const SubmitButton = styled.button`
@@ -43,7 +43,7 @@ function AddChild(props) {
   return (
     <Background>
       <Form>
-        <div>
+        <div className='addChildField'>
           <h6> First Name </h6>
 
           <Field
@@ -54,7 +54,7 @@ function AddChild(props) {
             placeholder="Enter your Child's Name"
           />
         </div>
-        <div>
+        <div className='addChildField'>
           <h6> Last Name </h6>
 
           <Field
@@ -65,7 +65,7 @@ function AddChild(props) {
             placeholder="Enter your Child's Name"
           />
         </div>
-        <div>
+        <div className='addChildField'>
           <h6> Date of Birth</h6>
           <Field
             id="dateOfBirth"
@@ -75,7 +75,7 @@ function AddChild(props) {
             placeholder="Enter your Childs's Date of Birth"
           />
         </div>
-        <div>
+        <div className='addChildField'>
           <h6>Social Security</h6>
           <Field
             id="socialSecurityNumber"
