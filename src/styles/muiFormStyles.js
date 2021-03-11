@@ -3,7 +3,7 @@ import { theme } from "./theme";
 
 export const useStyles = makeStyles({
   root: {
-    height: "100vh",
+    height: "90vh",
     width: "100%",
     margin: "0 auto",
     paddingTop: theme.spacing(5),
