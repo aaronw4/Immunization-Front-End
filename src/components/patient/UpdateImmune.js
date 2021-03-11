@@ -17,8 +17,8 @@ justify-content: center;
 background-color: lightgrey;
 height: 40rem;
 width:40rem;
-margin-left: 30rem;
-margin-right:15rem;
+margin-left: auto;
+margin-right: auto;
 padding:8rem;
 `
 
