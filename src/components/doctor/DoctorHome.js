@@ -129,7 +129,7 @@ function DoctorHome({ patients, display }) {
                 {patient.firstName} {patient.lastName}
               </p>
               <Link to={`/patient/${patient.id}`}>
-                <Record>Record</Record>
+                <Record>Records</Record>
               </Link>
             </PatientButton>
           ))}
