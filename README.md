@@ -1,4 +1,4 @@
-# Dev Desk Queue 3
+# Dev Desk
 
 ## **Proposal**
 - What problem does your app solve?
