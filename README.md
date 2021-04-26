@@ -1,7 +1,5 @@
 ## Immunization Tracker
 
-In the project directory, you can run:
-
 
 ### Motivation
 
