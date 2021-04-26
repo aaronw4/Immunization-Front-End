@@ -1,68 +1,61 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Dev Desk Queue 3
 
-## Available Scripts
+## **Proposal**
+- What problem does your app solve?
+    - This app will make it easier for Lambda students to request help for various problems that they face during their training.
+    - It also will make it easier for the various helpers to answer the student's questions in a timely manner.
+- Be as specific as possible; how does your app solve the problem?
+    - To solve this problem, it will first give the students the chance to review other problems that have already been asked and answered by other students, to see if anyone else is having the similar problem.
+    - If the student can't find a similar situation to the problem they are having, then they can submit a new help ticket.
+    - The new ticket will require the student to provide as much information about their problem as possible:
+        - Category section where the student can state whether the problem they are having is a syntax error in CSS or in React.
+        - Description section where the student can give a detailed account of what caused the problem
+        - Title section that briefly describes the situation in a few words
+        - Things tried section where the student can give the helper a run down of what they tried to do on their own to fix the problem before asking for help
+    - There will also be a separate helper section where helpers can log in to the app and see any and all open tickets.
+        - The helper section will display all open tickets
+        - Allow the helpers to assign a ticket to themselves so that they can answer the ticket
+        - Once the ticket is answered they will place the ticket into the resolved database and inform the student that their ticket has been answered
+        - If for whatever reason, the helper can't answer the question, they will re-open the ticket so that another helper may try to resolve the ticket
+    - Our app will have a backend database where all of the tickets will be held
 
-In the project directory, you can run:
+- What is the mission statement?
 
-### `yarn start`
+## **Features**
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- What features are required for your minimum viable product?
+    - The MVP for this project will be to have two user sections: Student and Helper
+- What features may you wish to put in a future release?
+- What do the top 3 similar apps do for their users?
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## **Design - Planning**
 
-### `yarn test`
+*Optional but highly recommended* *Please refer to this document:*
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[Build Weeks: Planning & Design Worksheet (How to build a beautiful application)](https://www.notion.so/Build-Weeks-Planning-Design-Worksheet-How-to-build-a-beautiful-application-aabd4ef25a184a2085e511ce93480c0f)
 
-### `yarn build`
+- What design system will you use?
+- What will your user flow be?
+- What is the URL to your wireframes?
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## **Frameworks - Libraries**
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+- What 3rd party frameworks/libraries are you considering using?
+    - React JS
+- Do APIs require you to contact its maintainer to gain access?
+    - No
+- Are you required to pay to use the API?
+    - No
+- Have you considered using Apple Frameworks? (MapKit, Healthkit, ARKit?)
+    - No
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## **Target Audience**
 
-### `yarn eject`
+- Who is your target audience? Be specific.
+    - Our Target audience will be both the students and advisors at Lambda School
+- What feedback have you gotten from potential users?
+    - Not yet
+- Have you validated the problem and your solution with your target audience? How?
+    - No
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Copyright Lambda School 2019, All Rights Reserved
